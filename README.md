@@ -7,3 +7,7 @@ The Interface: Web UI (Spring boot)
   * The user can login in with account was created.
   * The user can login in with guest.
 
+
+To run (in VSCode for now):
+While in the document/ folder, run ./mvnw spring-boot:run
+Then open localhost:8080 in a browser
