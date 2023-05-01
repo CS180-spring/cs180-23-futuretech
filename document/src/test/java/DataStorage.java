@@ -30,6 +30,7 @@ public class DataStorage {
                     System.out.print("Enter password: ");
                     String registerPassword = scanner.nextLine();
                     userAccount.register(registerUsername, registerPassword);
+
                     break;
                 case 3:
                     userAccount.createGuestAccount();
