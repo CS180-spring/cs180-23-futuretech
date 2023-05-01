@@ -3,14 +3,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-interface UserAccount {
-    void login(String username, String password);
-    void register(String username, String password);
-    void createGuestAccount();
-    void mainMenu();
-}
+//interface UserAccount {
+//    void login(String username, String password);
+//    void register(String username, String password);
+//    void createGuestAccount();
+//    void mainMenu();
+//}
 
-class UserAccountImpl implements UserAccount {
+class UserAccountImpl{ //implements UserAccount {
     private Map<String, String> accounts;
     private static final String FILE_NAME = "user_accounts.txt"; // File to store usernames and passwords
 
@@ -19,7 +19,7 @@ class UserAccountImpl implements UserAccount {
         loadUserAccounts(); // Load usernames and passwords from file
     }
 
-    @Override
+
     public void login(String username, String password) {
 
         if (accounts.containsKey(username) && accounts.get(username).equals(password)) {
@@ -30,7 +30,7 @@ class UserAccountImpl implements UserAccount {
         }
     }
 
-    @Override
+
     public void register(String username, String password) {
         if (!accounts.containsKey(username)) {
             accounts.put(username, password);
@@ -41,12 +41,11 @@ class UserAccountImpl implements UserAccount {
         }
     }
 
-    @Override
     public void createGuestAccount() {
         System.out.println("Guest account created! Welcome as a guest user.");
         mainMenu();
     }
-    @Override
+
     public void mainMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("---- FutureDB ----");
