@@ -1,14 +1,22 @@
 {
-    "firstName": "John",
-    "lastName": "Smith",
-    "languages": "English",
-    "item name": "pencil",
-    "Rating" : 3.5,
-    "address": {
-        "streetAddress": "21 2nd Street",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": 10021
-    },
-    "description": "ao li gei"
+    "item list": [
+        {
+            "firstName": "John",
+            "lastName": "Smith",
+            "languages": "English",
+            "item name": "pencil",
+            "Rating" : 3.5,
+            "description": "ao li gei"
+        },
+        {
+            "firstName": "Leo",
+            "lastName": "Swery",
+            "languages": "Spanish",
+            "item name": "book",
+            "Rating" : 4.5,
+            "description": "ao li gei"
+        }
+
+    ]
+
 }

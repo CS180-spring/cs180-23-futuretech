@@ -1,3 +1,4 @@
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 
@@ -15,30 +16,37 @@ public class JsonReader {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(strJson);
             JSONObject mainObj = (JSONObject) obj;
+            JSONArray list = (JSONArray) mainObj.get("item list");
+            System.out.println("Name        Language       Item         Rating     Description");
 
-            /*************** First Name ****************/
-            String firstName = (String) mainObj.get("firstName");
-            System.out.println("First Name : " + firstName);
+            for (int i = 0; i < list.size(); i++) {
+                JSONObject oneLine = (JSONObject) list.get(i);
+                /*************** First Name ****************/
+                String firstName = (String) oneLine.get("firstName");
+                System.out.print(firstName);
 
-            /*************** Last Name ****************/
-            String lastName = (String) mainObj.get("lastName");
-            System.out.println("Last Name : " + lastName);
+                /*************** Last Name ****************/
+                String lastName = (String) oneLine.get("lastName");
+                System.out.print(" " + lastName);
 
-            /*************** Language ****************/
-            String language = (String) mainObj.get("languages");
-            System.out.println("languages: " + language);
+                /*************** Language ****************/
+                String language = (String) oneLine.get("languages");
+                System.out.print("   " + language);
 
-            /*************** Item Name ****************/
-            String itemName = (String) mainObj.get("item name");
-            System.out.println("Item Name : " + itemName);
+                /*************** Item Name ****************/
+                String itemName = (String) oneLine.get("item name");
+                System.out.print("        " + itemName);
 
-            /*************** Rating ****************/
-            double rating = (double) mainObj.get("Rating");
-            System.out.println("Rating : " + rating);
+                /*************** Rating ****************/
+                double rating = (double) oneLine.get("Rating");
+                System.out.print("      " + rating);
 
-            /*************** Description ****************/
-            String description = (String) mainObj.get("description");
-            System.out.println("Description : " + description);
+                /*************** Description ****************/
+                String description = (String) oneLine.get("description");
+                System.out.println("        " + description);
+            }
+
+
         }
         catch (Exception e)
         {
