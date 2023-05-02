@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 class UserAccountImpl{ //implements UserAccount {
     private Map<String, String> accounts;
+    String username;
     private static final String FILE_NAME = "user_accounts.txt"; // File to store usernames and passwords
 
     public UserAccountImpl() {
@@ -19,6 +20,11 @@ class UserAccountImpl{ //implements UserAccount {
         loadUserAccounts(); // Load usernames and passwords from file
     }
 
+
+    public String getUserName()
+    {
+        return username;// username+ "/" + filename.txt
+    }
 
     public void login(String username, String password) {
 
