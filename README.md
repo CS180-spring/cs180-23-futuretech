@@ -12,14 +12,18 @@ To run (in VSCode for now):
 While in the document/ folder, run ./mvnw spring-boot:run
 Then open localhost:8080 in a browser. Register by clicking on "Click here to register" and submit your Username and Password.
 
-To run the file "UserLoginRegistration.java"
+## To run the file "UserLoginRegistration.java"
   User need to download the "src", ".idea", ".gitignore", "Login.iml" files, then you should be able to launch the file. <br>
   When you launch the file, you should see the welcome page of the FutureDB.<br>
 You can select your option to register account, login account and visit as guest.<br>
+<img width="209" alt="Screen Shot 2023-05-04 at 3 53 44 PM" src="https://user-images.githubusercontent.com/97145998/236347373-327447f7-1aff-4c1a-bb41-9c2a576cc6bb.png"> .<br>
  If you select login account, you can enter your username and password of the username. After that, you can login to the FutureDB.<br>
+ <img width="275" alt="Screen Shot 2023-05-04 at 3 54 58 PM" src="https://user-images.githubusercontent.com/97145998/236347610-a9bec7ae-291d-4b5f-b556-07d95e27f3ff.png"> .<br>
  If you select register account, you should enter your username and passowrd. After that you should see that you have register successfully.<br>
+<img width="396" alt="Screen Shot 2023-05-04 at 4 02 35 PM" src="https://user-images.githubusercontent.com/97145998/236348177-5c8e37fc-179a-43d7-a7bc-6c536b0a1a15.png"> .<br>
  If you select Create guest account, you can get into the FutureDB directly.<br>
  After you getinto the FutureDB, you should see a menu of the FutureDB.<br>
+ <img width="381" alt="Screen Shot 2023-05-04 at 3 55 25 PM" src="https://user-images.githubusercontent.com/97145998/236347950-1ea88248-b94a-4098-bfd2-2159e615902d.png"> .<br>
  User can choose the function that wants to use from the menu.<br>
 
 ## To run the feature "Keyword searching"
