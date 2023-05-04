@@ -10,7 +10,7 @@ The Interface: Web UI (Spring boot)
 
 To run (in VSCode for now):
 While in the document/ folder, run ./mvnw spring-boot:run
-Then open localhost:8080 in a browser
+Then open localhost:8080 in a browser. Register by clicking on "Click here to register" and submit your Username and Password.
 
 To run the file "UserLoginRegistration.java"
   User need to download the "src", ".idea", ".gitignore", "Login.iml" files, then you should be able to launch the file. <br>
