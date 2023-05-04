@@ -8,8 +8,14 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class JsonReader {
+
+    public void read()
+    {
+
+    }
+
     public static void main(String[] args) {
-        String strJson = getJSONFile("items list.json");
+        String strJson = getJSONFile("newList.json");
 //        System.out.println(strJson);
         ArrayList<SingleReview> fileHolder = new ArrayList<>();
 
@@ -27,11 +33,11 @@ public class JsonReader {
             for (int i = 0; i < list.size(); i++) {
                 JSONObject oneLine = (JSONObject) list.get(i);
 
-                firstName = (String) oneLine.get("firstName");
-                lastName = (String) oneLine.get("lastName");
+                firstName = (String) oneLine.get("name");
+                lastName = (String) oneLine.get("time");
                 language = (String) oneLine.get("languages");
                 itemName = (String) oneLine.get("item name");
-                rating = (double) oneLine.get("Rating");
+                rating = (double) oneLine.get("rating");
                 description = (String) oneLine.get("description");
 
                 fileHolder.add(new SingleReview(firstName,lastName,language
@@ -49,12 +55,19 @@ public class JsonReader {
         {
             e.printStackTrace();
         }
-
-        String keyWord = "";
-        for (SingleReview singleReview : fileHolder) {
-            if(singleReview.keyWordSearch(keyWord))
-                System.out.println(singleReview);
+        try{
+            JsonOutputer jsonOutputer = new JsonOutputer();
+            jsonOutputer.outputToJson(fileHolder);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
         }
+
+//        String keyWord = "";
+//        for (SingleReview singleReview : fileHolder) {
+//            if(singleReview.keyWordSearch(keyWord))
+//                System.out.println(singleReview);
+//        }
     }
 
     public static String getJSONFile(String fileName){

@@ -1,6 +1,6 @@
 public class SingleReview {
     private String firstName;
-    private String lastName;
+    private String time;
     private String language;
     private String item;
     private double rating;
@@ -9,22 +9,22 @@ public class SingleReview {
     public SingleReview(String firstName, String lastName, String language,
                         String item, double rating, String description) {
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.time = lastName;
         this.language = language;
         this.item = item;
         this.rating = rating;
         this.description = description;
     }
 //    @Override
-    public String toString()
-    {
-        return firstName + " " + lastName + " " + language + " "
-                + item + " " + (rating) + " " + description;
-    }
+//    public String toString()
+//    {
+//        return firstName + " " + lastName + " " + language + " "
+//                + item + " " + (rating) + " " + description;
+//    }
 
     boolean keyWordSearch(String str)
     {
-        return firstName.contains(str) || lastName.contains(str)
+        return firstName.contains(str) || time.contains(str)
                 || language.contains(str) || item.contains(str)
                 || description.contains(str);
     }
@@ -38,8 +38,8 @@ public class SingleReview {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getTime() {
+        return time;
     }
 
     public String getLanguage() {
