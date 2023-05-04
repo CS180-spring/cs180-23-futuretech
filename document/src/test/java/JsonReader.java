@@ -8,24 +8,25 @@ import java.nio.Buffer;
 import java.util.ArrayList;
 
 public class JsonReader {
+    public static void main(String[] args) {
 
+    }
+
+    public ArrayList<SingleReview> fileHolder = new ArrayList<>();
     public void read()
     {
 
     }
 
-    public static void main(String[] args) {
-        String strJson = getJSONFile("output.json");
-//        System.out.println(strJson);
-        ArrayList<SingleReview> fileHolder = new ArrayList<>();
+    public JsonReader() {
+        String strJson = getJSONFile("items list.json");
 
-
+//            System.out.println("Name        Language       Item         Rating     Description");
         try{
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(strJson);
             JSONObject mainObj = (JSONObject) obj;
             JSONArray list = (JSONArray) mainObj.get("item list");
-//            System.out.println("Name        Language       Item         Rating     Description");
 
             String firstName, lastName, language;
             String itemName, description;
@@ -56,13 +57,13 @@ public class JsonReader {
             e.printStackTrace();
         }
 
-        try{
-            JsonOutputer jsonOutputer = new JsonOutputer();
-            jsonOutputer.outputToJson(fileHolder);
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//        try{
+//            JsonOutputer jsonOutputer = new JsonOutputer();
+//            jsonOutputer.outputToJson(fileHolder);
+//        }catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
 
 //        String keyWord = "";
 //        for (SingleReview singleReview : fileHolder) {
@@ -70,14 +71,16 @@ public class JsonReader {
 //        }
     }
 
+
+
     public static String getJSONFile(String fileName){
-        String txt = "";
+        StringBuilder fileContext = new StringBuilder();
         try{
             //start to read file
             BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
             String line;
             while((line = bufferedReader.readLine()) != null){
-                txt += line + "\n";
+                fileContext.append(line).append("\n");
             }
             bufferedReader.close();
             //read file done
@@ -86,6 +89,6 @@ public class JsonReader {
         {
             e.printStackTrace();
         }
-        return txt;
+        return fileContext.toString();
     }
 }
