@@ -22,7 +22,12 @@ You can select your option to register account, login account and visit as guest
  After you getinto the FutureDB, you should see a menu of the FutureDB.<br>
  User can choose the function that wants to use from the menu.<br>
 
-To run the feature "Keyword searching"
+## To run the feature "Keyword searching"
 ![image](https://user-images.githubusercontent.com/57771700/236345832-dec6a68c-aaca-4888-9232-f6dbd3eeccfb.png)
 Once user has upload their file, user can type in a keyword. And then the program will start to search for the keyword in the file and display on the screen. Also, user has option to export the search result into json format and name the file.
 
+## To run insert and delete data
+<img width="352" alt="Screen Shot 2023-05-04 at 3 55 16 PM" src="https://user-images.githubusercontent.com/102633438/236347307-4c1d15b8-1745-41e2-9def-a5231ecbac21.png">
+User can input the data with the correct data type, and user can input exit to exit the insert data.<br>
+<img width="317" alt="Screen Shot 2023-05-04 at 3 52 29 PM" src="https://user-images.githubusercontent.com/102633438/236347436-942fda48-634c-4b32-96f3-f8e75b0316d2.png">
+User can input the item name in the json file. If the item not found, it will show a not with "item not found".
