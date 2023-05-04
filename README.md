@@ -21,4 +21,8 @@ You can select your option to register account, login account and visit as guest
  If you select Create guest account, you can get into the FutureDB directly.<br>
  After you getinto the FutureDB, you should see a menu of the FutureDB.<br>
  User can choose the function that wants to use from the menu.<br>
- 
+
+To run the feature "Keyword searching"
+![image](https://user-images.githubusercontent.com/57771700/236345832-dec6a68c-aaca-4888-9232-f6dbd3eeccfb.png)
+Once user has upload their file, user can type in a keyword. And then the program will start to search for the keyword in the file and display on the screen. Also, user has option to export the search result into json format and name the file.
+
