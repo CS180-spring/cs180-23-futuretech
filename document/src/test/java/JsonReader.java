@@ -15,7 +15,7 @@ public class JsonReader {
     }
 
     public static void main(String[] args) {
-        String strJson = getJSONFile("newList.json");
+        String strJson = getJSONFile("output.json");
 //        System.out.println(strJson);
         ArrayList<SingleReview> fileHolder = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class JsonReader {
             Object obj = parser.parse(strJson);
             JSONObject mainObj = (JSONObject) obj;
             JSONArray list = (JSONArray) mainObj.get("item list");
-            System.out.println("Name        Language       Item         Rating     Description");
+//            System.out.println("Name        Language       Item         Rating     Description");
 
             String firstName, lastName, language;
             String itemName, description;
@@ -55,6 +55,7 @@ public class JsonReader {
         {
             e.printStackTrace();
         }
+
         try{
             JsonOutputer jsonOutputer = new JsonOutputer();
             jsonOutputer.outputToJson(fileHolder);
@@ -65,8 +66,7 @@ public class JsonReader {
 
 //        String keyWord = "";
 //        for (SingleReview singleReview : fileHolder) {
-//            if(singleReview.keyWordSearch(keyWord))
-//                System.out.println(singleReview);
+//            System.out.println(singleReview);
 //        }
     }
 

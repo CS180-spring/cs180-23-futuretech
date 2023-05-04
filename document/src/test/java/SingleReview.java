@@ -16,11 +16,11 @@ public class SingleReview {
         this.description = description;
     }
 //    @Override
-//    public String toString()
-//    {
-//        return firstName + " " + lastName + " " + language + " "
-//                + item + " " + (rating) + " " + description;
-//    }
+    public String toString()
+    {
+        return firstName + " " + time + " " + language + " "
+                + item + " " + (rating) + " " + description;
+    }
 
     boolean keyWordSearch(String str)
     {

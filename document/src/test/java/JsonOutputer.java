@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class JsonOutputer {
@@ -16,22 +18,22 @@ public class JsonOutputer {
 
         for(SingleReview s:arrayList)
         {
-            JSONObject obj = new JSONObject();
+            Map<String, Object> obj = new LinkedHashMap<>();
             obj.put("name", s.getFirstName());
             obj.put("time", s.getTime());
             obj.put("languages", s.getLanguage());
             obj.put("item name",s.getItem());
-            obj.put("Rating", s.getRating());
+            obj.put("rating", s.getRating());
             obj.put("description",s.getDescription());
             list.add(obj);
         }
 
+
         JSONObject newObj = new JSONObject();
-        newObj.put("items list", list);
+        newObj.put("item list", list);
 
-        try(FileWriter file = new FileWriter("output.json")){
+        try(FileWriter file = new FileWriter("newList.json")){
             file.write(newObj.toJSONString());
-
         }
         catch (IOException e)
         {
@@ -45,16 +47,16 @@ public class JsonOutputer {
         JSONObject obj = new JSONObject();
 
 
-//        obj.put("name", s.getFirstName());
-//        obj.put("languages", s.getLanguage());
-//        obj.put("item name",s.getItem());
-//        obj.put("Rating", s.getRating());
-//        obj.put("description",s.getDescription());
+        obj.put("name", "s.getFirstName()");
+        obj.put("languages", "s.getLanguage()");
+        obj.put("item","s.getItem()");
+        obj.put("rating", "s.getRating()");
+        obj.put("description","s.getDescription()");
 
         list.add(obj);
 
         JSONObject newObj = new JSONObject();
-        newObj.put("items list", list);
+        newObj.put("item list", list);
 
         try(FileWriter file = new FileWriter("output.json")){
             file.write(newObj.toJSONString());
