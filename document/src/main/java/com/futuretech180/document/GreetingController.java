@@ -28,4 +28,33 @@ public class GreetingController {
         System.out.println(user);
         return "register_success";
     }
+
+
+
+
+
+    @ModelAttribute("account")
+    public UserAccount getUserAccount(){
+        return new UserAccount();
+    }
+
+    @GetMapping("/register2")
+    public String showForm2(){
+        return "register_form2";
+    }
+
+    @PostMapping("/register2")
+    public String handle_form2(@ModelAttribute("account") UserAccount userAcc){
+        // System.out.println(userAcc);
+        
+        // @ModelAttribute("userAcc")
+        UserAccount newAcc = new UserAccount();
+        newAcc.register(userAcc.getUsername(), userAcc.getPassword());
+
+        // userAcc.register(userAcc.getUsername(), userAcc.getPassword());
+        // System.out.println(userAcc);
+
+        return "register_success";
+    }
+
 }

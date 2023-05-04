@@ -9,9 +9,10 @@
 <body>
     <div align="center">
         <h2>Registration succeeded!</h2>
-        <span>Username: </span><span th:text="${user.name}"></span><br/>
-        <span>Password: </span><span th:text="${user.password}"></span><br/>
-        <span>UserID: </span><span th:text="${user.userID}"></span><br/>
+        <script>console.log("here?");</script>
+        <span>Username: </span><span th:text="${user.getName()}"></span><br/>
+        <span>Password: </span><span th:text="${user.getPassword()}"></span><br/>
+        <!-- <span>UserID: </span><span th:text="${user.userID}"></span><br/> -->
     </div>
 </body>
 </html>
