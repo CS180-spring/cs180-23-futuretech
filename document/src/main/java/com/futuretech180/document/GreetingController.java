@@ -15,17 +15,51 @@ public class GreetingController {
         return "greeting";
     }
 
-    @GetMapping("/register")
-    public String showForm(Model model){
-        User user = new User();
-        model.addAttribute("user", user);
 
-        return "register_form";
+
+
+
+    // @GetMapping("/register")
+    // public String showForm(Model model){
+    //     User user = new User();
+    //     model.addAttribute("user", user);
+
+    //     return "register_form";
+    // }
+
+    // @PostMapping("/register")
+    // public String submitForm(@ModelAttribute("user1") User user){
+    //     // System.out.println(user);
+    //     return "register_success";
+    // }
+
+
+
+
+
+
+
+
+    @ModelAttribute("account")
+    public UserAccount getUserAccount(){
+        return new UserAccount();
     }
 
-    @PostMapping("/register")
-    public String submitForm(@ModelAttribute("user") User user){
-        System.out.println(user);
+    @GetMapping("/register2")
+    public String showForm2(){
+        return "register_form2";
+    }
+
+    @PostMapping("/register2")
+    public String handle_form2(@ModelAttribute("accountDisplay") UserAccount userAcc){
+        // System.out.println(userAcc);
+        
+        userAcc.register(userAcc.getUsername(), userAcc.getPassword());
+
+        // userAcc.register(userAcc.getUsername(), userAcc.getPassword());
+        // System.out.println(userAcc);
+
         return "register_success";
     }
+
 }
