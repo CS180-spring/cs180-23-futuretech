@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class UserAccount {
-    private Map<String, String> accounts;
+    private Map<String, String> accounts = new HashMap<>();
     String username;
     private String password;
     private static final String FILE_NAME = "user_accounts.txt";
 
     public UserAccount(){
-        accounts = new HashMap<>();
+        // accounts = new HashMap<>();
         // loadUserAccounts();
     }
 
@@ -24,12 +24,20 @@ public class UserAccount {
         return this.password;
     }
 
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
     public void register(String username, String password){
         if (!accounts.containsKey(username)) {
             accounts.put(username, password);
             this.username = username;
             this.password = password;
-            // saveUserAccounts(); // Save updated usernames and passwords to file
+            saveUserAccounts(); // Save updated usernames and passwords to file
             // System.out.println("Registration successful! Account created for " + username + ".");
         } else {
             // System.out.println("Username already exists. Please choose a different username.");

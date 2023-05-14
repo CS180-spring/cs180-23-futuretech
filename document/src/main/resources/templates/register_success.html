@@ -10,8 +10,14 @@
     <div align="center">
         <h2>Registration succeeded!</h2>
         <script>console.log("here?");</script>
-        <span>Username: </span><span th:text="${user.getName()}"></span><br/>
-        <span>Password: </span><span th:text="${user.getPassword()}"></span><br/>
+        <!-- <span>Username: </span><span th:text="${user1.getName()}"></span><br/>
+        <span>Password: </span><span th:text="${user1.getPassword()}"></span><br/> -->
+  
+  
+        <span>Username: </span><span th:text="${accountDisplay.getUsername()}"></span><br/>
+        <span>Password: </span><span th:text="${accountDisplay.getPassword()}"></span><br/>
+
+        <a href="/">Home</a>
         <!-- <span>UserID: </span><span th:text="${user.userID}"></span><br/> -->
     </div>
 </body>
