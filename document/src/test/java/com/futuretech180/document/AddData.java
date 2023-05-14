@@ -1,3 +1,5 @@
+package com.futuretech180.document;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

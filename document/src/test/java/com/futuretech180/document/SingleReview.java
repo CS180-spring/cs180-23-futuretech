@@ -1,3 +1,4 @@
+package com.futuretech180.document;
 public class SingleReview {
     private String firstName;
     private String time;
