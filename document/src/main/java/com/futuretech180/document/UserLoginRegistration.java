@@ -50,13 +50,15 @@ class UserAccountImpl{ //implements UserAccount {
     }
 
 
-    public void register(String username, String password) {
+    public Boolean register(String username, String password) {
         if (!accounts.containsKey(username)) {
             accounts.put(username, password);
             saveUserAccounts(); // Save updated usernames and passwords to file
             System.out.println("Registration successful! Account created for " + username + ".");
+            return true;
         } else {
             System.out.println("Username already exists. Please choose a different username.");
+            return false;
         }
     }
 
