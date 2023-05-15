@@ -14,6 +14,7 @@ import java.util.Scanner;
 class UserAccountImpl{ //implements UserAccount {
     private Map<String, String> accounts;
     String username;
+    String password;
     private static final String FILE_NAME = "user_accounts.txt"; // File to store usernames and passwords
 
     public UserAccountImpl() {
@@ -21,10 +22,21 @@ class UserAccountImpl{ //implements UserAccount {
         loadUserAccounts(); // Load usernames and passwords from file
     }
 
-
-    public String getUserName()
+    public String getUsername()
     {
         return username;// username+ "/" + filename.txt
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public void login(String username, String password) {
@@ -38,13 +50,15 @@ class UserAccountImpl{ //implements UserAccount {
     }
 
 
-    public void register(String username, String password) {
+    public Boolean register(String username, String password) {
         if (!accounts.containsKey(username)) {
             accounts.put(username, password);
             saveUserAccounts(); // Save updated usernames and passwords to file
             System.out.println("Registration successful! Account created for " + username + ".");
+            return true;
         } else {
             System.out.println("Username already exists. Please choose a different username.");
+            return false;
         }
     }
 

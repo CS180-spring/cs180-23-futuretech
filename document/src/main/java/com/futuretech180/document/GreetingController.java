@@ -54,12 +54,14 @@ public class GreetingController {
     public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
         // System.out.println(userAcc);
         
-        userAcc.register(userAcc.getUsername(), userAcc.getPassword());
+        Boolean unique = userAcc.register(userAcc.getUsername(), userAcc.getPassword());
 
-        // userAcc.register(userAcc.getUsername(), userAcc.getPassword());
-        // System.out.println(userAcc);
-
-        return "register_success";
+        if(unique){
+            return "register_success";
+        }
+        else{
+            return "dupe_username";
+        }
     }
 
 }
