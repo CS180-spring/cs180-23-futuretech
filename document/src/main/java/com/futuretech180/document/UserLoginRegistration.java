@@ -39,13 +39,15 @@ class UserAccountImpl{ //implements UserAccount {
         this.password = password;
     }
 
-    public void login(String username, String password) {
+    public Boolean login(String username, String password) {
 
         if (accounts.containsKey(username) && accounts.get(username).equals(password)) {
             System.out.println("Login successful! Welcome, " + username + "!");
-            mainMenu();
+            // mainMenu();
+            return true;
         } else {
             System.out.println("Invalid username or password. Please try again.");
+            return false;
         }
     }
 

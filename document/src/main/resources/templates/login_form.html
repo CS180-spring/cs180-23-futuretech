@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
+    <title>Login Page</title>
 </head>
 <body>
-    <form action="#" th:action="@{/register2}" method="post" th:object="${account}">
+    <form action="#" th:action="@{/login}" method="post" th:object="${account}">
         <label>Username:</label>
-        <input type="text" th:field="*{username}" /><br/>
+        <input type="text" th:field="*{username}" /><br />
 
         <label>Password:</label>
-        <input type="password" th:field="*{password}" /><br/>
+        <input type="password" th:field="*{password}" /><br />
 
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>
