@@ -18,7 +18,7 @@ public class AddDataHelper {
     static void addItem(SingleReview oneSingleReview) throws ParseException{
         // Read the existing JSON data from the file
         String jsonData = "";
-        String filePath = "items list.json";
+        String filePath = "items_list.json";
         File file = new File(filePath);
         Path path = Paths.get(filePath);
 
@@ -34,10 +34,10 @@ public class AddDataHelper {
             obj = (JSONObject) new JSONParser(JSONParser.MODE_PERMISSIVE).parse(jsonData);
         } else {
             obj = new JSONObject();
-            obj.put("items list", new JSONArray());
+            obj.put("items_list", new JSONArray());
         }
 
-        JSONArray existingList = (JSONArray) obj.get("items list");
+        JSONArray existingList = (JSONArray) obj.get("items_list");
 
         // Add the new data to the existing JSON array
         Map<String, Object>  newObject = new LinkedHashMap<>();

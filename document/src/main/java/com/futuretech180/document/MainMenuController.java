@@ -27,6 +27,7 @@ public class MainMenuController {
     }
 
 
+
     @ModelAttribute("singleReview")
     public SingleReview getSingleReview(){
         return new SingleReview();
@@ -44,6 +45,7 @@ public class MainMenuController {
     }
 
 
+    
     @GetMapping("/view")
     public String showView(){
         return "view_data";

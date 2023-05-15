@@ -23,6 +23,7 @@
         <!-- The div that will host the grid. ag-theme-alpine is the theme. -->
         <!-- The gid will be the size that this element is given. -->
         <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
+        <!-- <script type="module" src="data.js"></script> -->
         <script type="text/javascript">
             // Function to demonstrate calling grid's API
             function deselect(){
@@ -34,9 +35,12 @@
                 
                 // each entry here represents one column
                 columnDefs: [
-                    { field: "make" },
-                    { field: "model" },
-                    { field: "price" },
+                    { field: "languages" },
+                    { field: "name" },
+                    { field: "rating" },
+                    { field: "description" },
+                    { field: "time" },
+                    { field: "item name" },
             ],
             
             // default col def properties get applied to all columns
@@ -57,12 +61,19 @@
         new agGrid.Grid(eGridDiv, gridOptions);
         
         // Fetch data from server
-        fetch("https://www.ag-grid.com/example-assets/row-data.json")
+        // fetch("https://www.ag-grid.com/example-assets/row-data.json")
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        // //    gridOptions.api.setRowData(data);
+        // });
+
+        fetch('http://localhost:8000/items_list.json')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-           gridOptions.api.setRowData(data);
-        });
+            console.log(data.items_list);
+            gridOptions.api.setRowData(data.items_list);
+        })
         </script>
  </body>
  </html>
