@@ -35,8 +35,6 @@ public class GreetingController {
         return new UserAccountImpl();
     }
     
-    
-    
     @GetMapping("/login")
     public String showLogin(){
         return "login_form";
