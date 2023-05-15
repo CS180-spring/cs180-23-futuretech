@@ -41,8 +41,8 @@ public class GreetingController {
 
 
     @ModelAttribute("account")
-    public UserAccount getUserAccount(){
-        return new UserAccount();
+    public UserAccountImpl getUserAccount(){
+        return new UserAccountImpl();
     }
 
     @GetMapping("/register2")
@@ -51,7 +51,7 @@ public class GreetingController {
     }
 
     @PostMapping("/register2")
-    public String handle_form2(@ModelAttribute("accountDisplay") UserAccount userAcc){
+    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
         // System.out.println(userAcc);
         
         userAcc.register(userAcc.getUsername(), userAcc.getPassword());
