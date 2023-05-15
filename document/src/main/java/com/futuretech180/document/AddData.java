@@ -66,10 +66,10 @@ public class AddData {
             obj = (JSONObject) new JSONParser(JSONParser.MODE_PERMISSIVE).parse(jsonData);
         } else {
             obj = new JSONObject();
-            obj.put("items list", new JSONArray());
+            obj.put("items_list", new JSONArray());
         }
 
-        JSONArray existingList = (JSONArray) obj.get("items list");
+        JSONArray existingList = (JSONArray) obj.get("items_list");
 
         // Add the new data to the existing JSON array
         for (SingleReview s : arrayList) {

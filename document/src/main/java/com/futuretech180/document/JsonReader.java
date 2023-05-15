@@ -21,7 +21,7 @@ public class JsonReader {
     }
 
     public JsonReader() {
-        String strJson = getJSONFile("items list.json");
+        String strJson = getJSONFile("items_list.json");
 
 //            System.out.println("Name        Language       Item         Rating     Description");
         try{

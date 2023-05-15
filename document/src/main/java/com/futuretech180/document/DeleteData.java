@@ -34,10 +34,10 @@ public class DeleteData {
             obj = (JSONObject) new JSONParser(JSONParser.MODE_PERMISSIVE).parse(jsonData);
         } else {
             obj = new JSONObject();
-            obj.put("items list", new JSONArray());
+            obj.put("items_list", new JSONArray());
         }
 
-        JSONArray existingList = (JSONArray) obj.get("items list");
+        JSONArray existingList = (JSONArray) obj.get("items_list");
 
         // Ask the user for the item name to delete
         System.out.println("Enter the name of the item to delete:");
@@ -73,7 +73,7 @@ public class DeleteData {
                 newObject.put("description", item.get("description"));
                 updatedList.add(newObject);
             }
-            obj.put("items list", updatedList);
+            obj.put("items_list", updatedList);
             fileWriter.write(obj.toJSONString());
         } catch (IOException e) {
             e.printStackTrace();
