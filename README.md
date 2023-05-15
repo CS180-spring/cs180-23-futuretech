@@ -11,6 +11,7 @@ The Interface: Web UI (Spring boot)
 To run (in VSCode for now):
 While in the document/ folder, run ./mvnw spring-boot:run
 Then open localhost:8080 in a browser. Register by clicking on "Click here to register" and submit your Username and Password.
+In a new terminal, navigate to the directory in which **items_list.json** is located (document/ which is the same location as where you ran ./mvnw spring-boot:run). With this new terminal open, run the python file **httpserver.py**.
 
 ## To run the file "UserLoginRegistration.java"
   User need to download the "src", ".idea", ".gitignore", "Login.iml" files, then you should be able to launch the file. <br>
