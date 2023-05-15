@@ -15,10 +15,6 @@ public class GreetingController {
         return "greeting";
     }
 
-
-
-
-
     // @GetMapping("/register")
     // public String showForm(Model model){
     //     User user = new User();
@@ -34,15 +30,28 @@ public class GreetingController {
     // }
 
 
-
-
-
-
-
-
     @ModelAttribute("account")
     public UserAccountImpl getUserAccount(){
         return new UserAccountImpl();
+    }
+    
+    
+    
+    @GetMapping("/login")
+    public String showLogin(){
+        return "login_form";
+    }
+
+    @PostMapping("login")
+    public String handle_login(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
+        Boolean exists = userAcc.login(userAcc.getUsername(), userAcc.getPassword());
+
+        if(exists){
+            return "login_success";
+        }
+        else{
+            return "login_failure";
+        }
     }
 
     @GetMapping("/register2")
