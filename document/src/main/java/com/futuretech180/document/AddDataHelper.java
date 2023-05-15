@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,11 +18,13 @@ public class AddDataHelper {
     static void addItem(SingleReview oneSingleReview) throws ParseException{
         // Read the existing JSON data from the file
         String jsonData = "";
-        String filePath = "C:\\Projects\\cs180\\cs180-23-futuretech\\items list.json";
-        File file = new File("output.json");
+        String filePath = "items list.json";
+        File file = new File(filePath);
+        Path path = Paths.get(filePath);
+
         try {
             // jsonData = new String(Files.readAllBytes(file.toPath()));
-            jsonData = new String(Files.readAllBytes(Paths.get(filePath)));
+            jsonData = new String(Files.readAllBytes(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,14 +37,14 @@ public class AddDataHelper {
             obj.put("items list", new JSONArray());
         }
 
-        JSONArray existingList = (JSONArray) obj.get("item list");
+        JSONArray existingList = (JSONArray) obj.get("items list");
 
         // Add the new data to the existing JSON array
         Map<String, Object>  newObject = new LinkedHashMap<>();
         newObject.put("name", oneSingleReview.getFirstName());
         newObject.put("time", oneSingleReview.getTime());
         newObject.put("languages", oneSingleReview.getLanguage());
-        newObject.put("item name", oneSingleReview.getItem());
+        newObject.put("item name", oneSingleReview.getItem());  
         newObject.put("rating", oneSingleReview.getRating());
         newObject.put("description", oneSingleReview.getDescription());
         existingList.add(newObject);
