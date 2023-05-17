@@ -1,87 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-     <meta charset="UTF-8" />
-     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-     <meta
-     name="viewport"
-     content="width=device-width, initial-scale=1.0"
-     />
-     <title>Ag Grid App</title>
-     <!-- Include the JS for AG Grid -->
-     <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@29.3.5/dist/ag-grid-enterprise.min.js"></script>
-     <!-- Include the core CSS, this is needed by the grid -->
-     <link rel="stylesheet"
-     href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css"/>
-     <!-- Include the theme CSS, only need to import the theme you are going to use -->
-     <link rel="stylesheet"
-     href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"/>
-    </head>
-    <body>
-        <!-- Button to demonstrate calling the grid's API. -->
-        <button onclick="deselect()">Deselect Rows</button>
-        <!-- The div that will host the grid. ag-theme-alpine is the theme. -->
-        <!-- The gid will be the size that this element is given. -->
-        <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
-        <!-- <script type="module" src="data.js"></script> -->
-        <script type="text/javascript">
-            // Function to demonstrate calling grid's API
-            function deselect(){
-                gridOptions.api.deselectAll()
-            }
-            
-            // Grid Options are properties passed to the grid
-            const gridOptions = {
-                
-                // each entry here represents one column
-                columnDefs: [
-                    {
-                        headerName: 'User Details',
-                        children: [
-                            { field: 'name', rowDrag: true},
-                            { field: 'languages'},
-                            { field: 'time' },
-                        ]
-                    },
-                    {
-                        headerName: 'Product Details',
-                        children: [
-                            { field: 'item name' },
-                            { field: 'rating' },
-                            { field: 'description' },
-                        ]
-                    }
-                ],
-                rowDragManaged: true,
-            
-                // default col def properties get applied to all columns
-                defaultColDef: {
-                    sortable: true,
-                    filter: true,
-                    resizable: true,
-                },
-                
-                rowSelection: 'multiple', // allow rows to be selected
-                animateRows: true, // have rows animate to new positions when sorted
-                
-                // example event handler
-                onCellClicked: params => {
-                    console.log('cell was clicked', params)
-                },
 
-            };
-        
-        // get div to host the grid
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Data</title>
+    <!-- Include the JS for AG Grid -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@29.3.5/dist/ag-grid-enterprise.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css" />
+</head>
+
+<body>
+    <button onclick="deselect()">Deselect Rows</button>
+    <input type="text" id="filter-text-box" placeholder="Quick filter..." oninput="onFilterTextBoxChanged()" />
+    <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
+    <script type="text/javascript">
+        function deselect() {
+            gridOptions.api.deselectAll()
+        }
+
+        const gridOptions = {
+
+            defaultColDef: {
+                flex: 1,
+                sortable: true,
+                filter: true,
+                resizable: true,
+                enableRowGroup: true,
+            },
+
+            sideBar: {
+                toolPanels: [
+                    {
+                        id: 'columns',
+                        labelDefault: 'Columns',
+                        labelKey: 'columns',
+                        iconKey: 'columns',
+                        toolPanel: 'agColumnsToolPanel',
+                        toolPanelParams: {
+                            suppressSyncLayoutWithGrid: true,
+                            suppressColumnMove: true,
+                            suppressPivotMode: true,
+                            suppressValues: true,
+                            suppressRowGroups: true,
+                        },
+                    },
+                ],
+                defaultToolPanel: 'columns',
+            },
+
+            rowGroupPanelShow: 'always',
+
+            columnDefs: [
+                {
+                    headerName: 'User Details',
+                    children: [
+                        { field: 'name', rowDrag: true },
+                        { field: 'languages' },
+                        { field: 'time' },
+                    ]
+                },
+                {
+                    headerName: 'Product Details',
+                    children: [
+                        { field: 'item name' },
+                        { field: 'rating' },
+                        { field: 'description', sortable: false, },
+                    ]
+                }
+            ],
+            rowDragManaged: true,
+
+            rowSelection: 'multiple',
+            animateRows: true,
+
+            // example event handler
+            onCellClicked: params => {
+                console.log('cell was clicked', params)
+            },
+
+        };
+
         const eGridDiv = document.getElementById("myGrid");
-        // new grid instance, passing in the hosting DIV and Grid Options
         new agGrid.Grid(eGridDiv, gridOptions);
 
         fetch('http://localhost:8000/items_list.json')
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data.items_list);
-            gridOptions.api.setRowData(data.items_list);
-        })
-        </script>
- </body>
- </html>
+            .then(response => response.json())
+            .then(data => {
+                // console.log(data.items_list);
+                gridOptions.api.setRowData(data.items_list);
+            })
+
+        function onFilterTextBoxChanged() {
+            gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
+        }
+    </script>
+</body>
+
+</html>
