@@ -1,94 +1,94 @@
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
-import net.minidev.json.parser.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.nio.Buffer;
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class JsonReader {
+
     public static void main(String[] args) {
+        String fileName = "items list.json";
 
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(fileName)));
+            JSONObject json = new JSONObject(content);
+
+            traverseSearch(json,"name");
+
+//            Iterator<String> keys = json.keys();
+
+//            while (keys.hasNext()) {
+//                String key = keys.next();
+//                Object value = json.get(key);
+//
+//                if (value instanceof JSONArray) {
+//                    JSONArray jsonArray = (JSONArray) value;
+//
+//                    processJSONArray(key, jsonArray);
+//                } else {
+//                    System.out.println("Key: " + key + ", Value: " + value);
+//                }
+//            }
+        } catch (IOException | JSONException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
     }
-
-    public ArrayList<SingleReview> fileHolder = new ArrayList<>();
-    public void read()
+    private static void traverseSearch(Object json, String keyword) throws JSONException
     {
+        if (json instanceof JSONArray)
+        {
+            JSONArray jsonArray = (JSONArray) json;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                Object element = jsonArray.get(i);
 
+                if(element instanceof JSONObject)
+                    traverseSearch(element,keyword);
+                else
+                    System.out.print(element + " ");
+                System.out.println();
+            }
+        }
+        else
+        if(json instanceof JSONObject)
+        {
+//            System.out.println("object");
+            JSONObject obj = (JSONObject) json;
+            Iterator keys = obj.keys();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                Object value = obj.get(key);
+
+                if (value instanceof JSONArray) {
+                    traverseSearch(value,keyword);
+                } else {
+                    System.out.println(key + ": " + value);
+                }
+            }
+        }
     }
 
-    public JsonReader() {
-        String strJson = getJSONFile("items list.json");
+    private static void processJSONArray(String key, JSONArray jsonArray) throws JSONException {
+//        System.out.println("Key: " + key + ", Values:");
 
-//            System.out.println("Name        Language       Item         Rating     Description");
-        try{
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(strJson);
-            JSONObject mainObj = (JSONObject) obj;
-            JSONArray list = (JSONArray) mainObj.get("item list");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Object element = jsonArray.get(i);
 
-            String firstName, lastName, language;
-            String itemName, description;
-            double rating;
-            for (int i = 0; i < list.size(); i++) {
-                JSONObject oneLine = (JSONObject) list.get(i);
-
-                firstName = (String) oneLine.get("name");
-                lastName = (String) oneLine.get("time");
-                language = (String) oneLine.get("languages");
-                itemName = (String) oneLine.get("item name");
-                rating = (double) oneLine.get("rating");
-                description = (String) oneLine.get("description");
-
-                fileHolder.add(new SingleReview(firstName,lastName,language
-                        ,itemName,rating,description));
-//                System.out.print(firstName);
-//                System.out.print(" " + lastName);
-//                System.out.print("   " + language);
-//                System.out.print("        " + itemName);
-//                System.out.print("      " + rating);
-//                System.out.println("        " + description);
+            if (element instanceof JSONObject) {
+                JSONObject jsonObject = (JSONObject) element;
+                Iterator<String> elementKeys = jsonObject.keys();
+                while (elementKeys.hasNext()) {
+                    String elementKey = elementKeys.next();
+                    Object elementValue = jsonObject.get(elementKey);
+                    System.out.println("Key: " + elementKey + ", Value: " + elementValue);
+                }
+            } else if (element instanceof JSONArray) {
+                processJSONArray(key, (JSONArray) element);
             }
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
         }
 
-//        try{
-//            JsonOutputer jsonOutputer = new JsonOutputer();
-//            jsonOutputer.outputToJson(fileHolder);
-//        }catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-
-//        String keyWord = "";
-//        for (SingleReview singleReview : fileHolder) {
-//            System.out.println(singleReview);
-//        }
-    }
-
-
-
-    public static String getJSONFile(String fileName){
-        StringBuilder fileContext = new StringBuilder();
-        try{
-            //start to read file
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
-            String line;
-            while((line = bufferedReader.readLine()) != null){
-                fileContext.append(line).append("\n");
-            }
-            bufferedReader.close();
-            //read file done
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return fileContext.toString();
     }
 }
