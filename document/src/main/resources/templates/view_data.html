@@ -87,10 +87,10 @@
         const eGridDiv = document.getElementById("myGrid");
         new agGrid.Grid(eGridDiv, gridOptions);
 
-        fetch('http://localhost:8000/items_list.json')
+        fetch('http://localhost:8000/items_list.json', {cache: "no-store"})
             .then(response => response.json())
             .then(data => {
-                // console.log(data.items_list);
+                console.log(data.items_list);
                 gridOptions.api.setRowData(data.items_list);
             })
 

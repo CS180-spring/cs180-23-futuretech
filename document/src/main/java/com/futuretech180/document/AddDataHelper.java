@@ -41,12 +41,12 @@ public class AddDataHelper {
 
         // Add the new data to the existing JSON array
         Map<String, Object>  newObject = new LinkedHashMap<>();
-        newObject.put("name", oneSingleReview.getFirstName());
-        newObject.put("time", oneSingleReview.getTime());
         newObject.put("languages", oneSingleReview.getLanguage());
-        newObject.put("item name", oneSingleReview.getItem());  
+        newObject.put("name", oneSingleReview.getFirstName());
         newObject.put("rating", oneSingleReview.getRating());
         newObject.put("description", oneSingleReview.getDescription());
+        newObject.put("time", oneSingleReview.getTime());
+        newObject.put("item name", oneSingleReview.getItem());  
         existingList.add(newObject);
 
         // Write the updated JSON data back to the file
