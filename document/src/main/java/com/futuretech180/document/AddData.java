@@ -20,15 +20,18 @@ public class AddData {
         Scanner scanner = new Scanner(System.in);
 
         ArrayList<SingleReview> arrayList = new ArrayList<>();
-
+        
+        // Login window page
         while (true) {
             System.out.println("Enter your name or 'exit' to finish:");
             String Name = scanner.nextLine();
 
+            // Exit the program
             if (Name.equals("exit")) {
                 break;
             }
 
+            // Input the data for document, press Enter when finish
             System.out.println("Enter the time or date:");
             String time = scanner.nextLine();
 
@@ -100,7 +103,7 @@ public class AddData {
 
 
 
-
+//============================================================================================
 //import java.io.File;
 //import java.io.FileWriter;
 //import java.io.IOException;
