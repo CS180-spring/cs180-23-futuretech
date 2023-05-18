@@ -18,14 +18,14 @@ public class DataStorage {
             scanner.nextLine(); // Consume the newline character
 
             switch (choice) {
-                case 1:
+                case 1:     // Login option
                     System.out.print("Enter username: ");
                     String loginUsername = scanner.nextLine();
                     System.out.print("Enter password: ");
                     String loginPassword = scanner.nextLine();
                     userAccount.login(loginUsername, loginPassword);
                     break;
-                case 2:
+                case 2:     // Register option
                     System.out.print("Enter username: ");
                     String registerUsername = scanner.nextLine();
                     System.out.print("Enter password: ");
@@ -33,10 +33,10 @@ public class DataStorage {
                     userAccount.register(registerUsername, registerPassword);
 
                     break;
-                case 3:
+                case 3:     //  Login as Guest, which not finish
                     userAccount.createGuestAccount();
                     break;
-                case 4:
+                case 4:     //  Exit option
                     System.out.println("Thank you for using the FutureDB. Goodbye!");
                     scanner.close();
                     System.exit(0);
