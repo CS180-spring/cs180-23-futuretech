@@ -4,19 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
-    <link rel="stylesheet" href="register_formStyle.css">
+    <title>Registration Page</title>
 </head>
 <body>
-    <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+    <form action="#" th:action="@{/register2}" method="post" th:object="${account}">
         <label>Username:</label>
-        <input type="text" th:field="*{name}" /><br/>
+        <input type="text" th:field="*{username}" /><br/>
 
         <label>Password:</label>
         <input type="password" th:field="*{password}" /><br/>
-
-        <!-- <label>UserID:</label>
-        <input type="text" th:field="*{userID}" /><br/> -->
 
         <button type="submit">Register</button>
     </form>

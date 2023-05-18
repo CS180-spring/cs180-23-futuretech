@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Data</title>
+</head>
+<body>
+    <form action="#" th:action="@{/insert}" method="post" th:object="${singleReview}">
+        <label>Name:</label>
+        <input type="text" th:field="*{firstName}" /><br/>
+
+        <label>Time:</label>
+        <input type="text" th:field="*{time}" /><br/>
+
+        <label>Language:</label>
+        <input type="text" th:field="*{language}" /><br/>
+
+        <label>Item:</label>
+        <input type="text" th:field="*{item}" /><br/>
+
+        <label>Rating:</label>
+        <input type="text" th:field="*{rating}" /><br/>
+
+        <label>Description:</label>
+        <input type="text" th:field="*{description}"><br/>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
