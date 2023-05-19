@@ -29,6 +29,8 @@ public class DeleteData {
             }
         }
 
+        // If document empty, create a new object and push into the array
+         
         JSONObject obj;
         if (!jsonData.isEmpty()) {
             obj = (JSONObject) new JSONParser(JSONParser.MODE_PERMISSIVE).parse(jsonData);
