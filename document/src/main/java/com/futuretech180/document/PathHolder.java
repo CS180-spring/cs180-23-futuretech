@@ -10,6 +10,9 @@ public class PathHolder {
     public static void main(String[] args) throws IOException {
         PathHolder p = new PathHolder("user1");
         System.out.println(p.isFolderExisted("user1"));
+        System.out.println(p.isFileExisted("sample.json"));
+        System.out.println(p.isFileExisted("sample1.json"));
+        p.createUserFolder("user1");
     }
     String username;
     PathHolder(String folderName) {
@@ -27,20 +30,19 @@ public class PathHolder {
 
     public String getPath()
     {
-        return "/Users/stephenhuang/IdeaProjects/cs180-23-futuretech/" +
-                "Users/"+ username + "/";
-
+        return "/Users/stephenhuang/IdeaProjects/cs180-23-futuretech" +
+                "/Users/" + username + "/" ;
     }
 
     public boolean isFolderExisted(String folderName) throws IOException {
         username = folderName;
-        System.out.println(getPath());
+//        System.out.println(getPath());
         File file = new File(getPath());
         return file.isDirectory();
     }
 
-    public boolean isFileExisted() throws IOException {
-        Path tempDirectory = Files.createTempDirectory(getPath());
-        return Files.exists(tempDirectory);
+    public boolean isFileExisted(String fileName) throws IOException {
+        File file = new File(getPath() + fileName);
+        return file.exists();
     }
 }
