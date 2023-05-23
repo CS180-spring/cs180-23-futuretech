@@ -21,6 +21,13 @@ public class AddData {
 
         ArrayList<SingleReview> arrayList = new ArrayList<>();
         
+        // User Input Loop:
+        // The program enters a while loop, which serves as a login window page.
+        // It prompts the user to enter their name or type "exit" to finish the program.
+        // If the user enters "exit," the loop is terminated.
+        // Otherwise, the program prompts the user to input various details such as time, language, item name, rating, and description.
+        // A SingleReview object is created using the entered data and added to the arrayList.
+
         // Login window page
         while (true) {
             System.out.println("Enter your name or 'exit' to finish:");
@@ -53,6 +60,13 @@ public class AddData {
             arrayList.add(singleReview);
         }
 
+        // JSON File Handling:
+        // The program reads the existing JSON data from a file named "output.json" using the Files.readAllBytes() method.
+        // If the file is not empty, the JSON data is stored in the jsonData string variable.
+        // The JSONObject class from the net.minidev.json library is used to parse the JSON data.
+        // If jsonData is not empty, the JSON data is parsed using a JSONParser object, and the resulting JSONObject is assigned to the obj variable.
+        // If jsonData is empty, a new JSONObject is created and assigned to the obj variable. Additionally, an empty JSONArray named "items_list" is added to obj.
+        
         // Read the existing JSON data from the file
         String jsonData = "";
         File file = new File("output.json");
@@ -74,6 +88,13 @@ public class AddData {
 
         JSONArray existingList = (JSONArray) obj.get("items_list");
 
+        // Adding Data to JSON:
+        // The program retrieves the "items_list" JSONArray from the obj and assigns it to the existingList variable.
+        // Using a for-each loop, each SingleReview object from the arrayList is processed.
+        // A new LinkedHashMap named newObject is created to store the review data as key-value pairs.
+        // The review data, such as name, time, language, item name, rating, and description, is added to newObject.
+        // newObject is then added to the existingList JSON array.
+
         // Add the new data to the existing JSON array
         for (SingleReview s : arrayList) {
             Map<String, Object>  newObject = new LinkedHashMap<>();
@@ -86,6 +107,10 @@ public class AddData {
             existingList.add(newObject);
         }
 
+        // Writing Updated JSON Data to File:
+        // The program uses a FileWriter to write the updated JSON data (stored in obj) back to the "output.json" file using the write() method.
+        // If an exception occurs during file writing, it is caught and printed.
+        
         // Write the updated JSON data back to the file
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(obj.toJSONString());
@@ -97,6 +122,7 @@ public class AddData {
     }
 }
 
+//
 
 
 
