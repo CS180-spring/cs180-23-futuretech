@@ -17,85 +17,83 @@ public class ReadByKeyword {
         String fileName = "items list.json";
         ArrayList<String> parent = new ArrayList<>();
         try {
+            // Read the content of the JSON file into a string
             String content = new String(Files.readAllBytes(Paths.get(fileName)));
+
+            // Create a JSONObject from the JSON content
             JSONObject json = new JSONObject(content);
 
-            traverseSearch(json,"name", "o");
+            // Call the traverseSearch method to search for a keyword in the JSON
+            traverseSearch(json, "name", "o");
 
         } catch (IOException | JSONException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
     }
-    public static void traverseSearch(Object json, String keyword,String v) throws JSONException
-    {
-        if (json instanceof JSONArray)
-        {
+
+    // Traverse the JSON object recursively to search for a keyword
+    public static void traverseSearch(Object json, String keyword, String v) throws JSONException {
+        if (json instanceof JSONArray) {
+            // If the object is a JSONArray, iterate over its elements
             JSONArray jsonArray = (JSONArray) json;
             for (int i = 0; i < jsonArray.length(); i++) {
                 Object element = jsonArray.get(i);
 
-                if(element instanceof JSONObject)
-                    traverseSearch(element,keyword,v);
-//                else
-//                    System.out.print(element + " ");
-//                System.out.println();
+                if (element instanceof JSONObject)
+                    traverseSearch(element, keyword, v);
             }
-        }
-        else
-        if(json instanceof JSONObject)
-        {
-//            System.out.println("object");
+        } else if (json instanceof JSONObject) {
+            // If the object is a JSONObject, iterate over its keys and values
             JSONObject obj = (JSONObject) json;
-            Iterator keys = obj.keys();
+            Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
-                String key = (String) keys.next();
+                String key = keys.next();
                 Object value = obj.get(key);
 
                 if (value instanceof JSONArray) {
-                    traverseSearch(value,keyword,v);
+                    // If the value is a JSONArray, recursively call traverseSearch on it
+                    traverseSearch(value, keyword, v);
                 } else {
-                    if(Objects.equals(key, keyword) && ((String)value).contains(v))
+                    // If the value is a string and matches the keyword and contains the search term,
+                    // print the key-value pair
+                    if (Objects.equals(key, keyword) && ((String) value).contains(v))
                         System.out.println(key + ": " + value);
                 }
             }
         }
     }
 
-    public static void traverseWithParent(Object json, String keyword,String v,ArrayList<String> parents) throws JSONException
-    {
-        if(json instanceof JSONObject)
-        {
+    // Traverse the JSON object recursively and keep track of the parent keys
+    public static void traverseWithParent(Object json, String keyword, String v, ArrayList<String> parents) throws JSONException {
+        if (json instanceof JSONObject) {
             JSONObject obj = (JSONObject) json;
-            Iterator keys = obj.keys();
+            Iterator<String> keys = obj.keys();
             while (keys.hasNext()) {
-                String key = (String) keys.next();
+                String key = keys.next();
                 Object value = obj.get(key);
                 if (value instanceof JSONArray) {
+                    // If the value is a JSONArray, iterate over its elements
                     JSONArray jsonArray = (JSONArray) json;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         Object element = jsonArray.get(i);
 
-                        if(element instanceof JSONObject)
-                        {
+                        if (element instanceof JSONObject) {
+                            // Add the current key to the parents list and recursively call traverseWithParent
                             parents.add(key);
-                            traverseWithParent(element,keyword,v,parents);
+                            traverseWithParent(element, keyword, v, parents);
                         }
-
                     }
-                }
-                else {
-                    if(Objects.equals(key, keyword) && ((String)value).contains(v))
-                    {
+                } else {
+                    // If the value is a string and matches the keyword and contains the search term,
+                    // print the parent keys followed by the key-value pair
+                    if (Objects.equals(key, keyword) && ((String) value).contains(v)) {
                         for (int i = 0; i < parents.size(); i++) {
-                            System.out.print(parents.get(i)+": ");
+                            System.out.print(parents.get(i) + ": ");
                         }
                         System.out.println(key + ": " + value);
                     }
-
                 }
             }
         }
     }
-
 }
-
