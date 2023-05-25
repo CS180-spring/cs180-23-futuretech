@@ -31,7 +31,7 @@ Once user has upload their file, user can type in a keyword. And then the progra
 <img width="352" alt="Screen Shot 2023-05-04 at 3 55 16 PM" src="https://user-images.githubusercontent.com/102633438/236347307-4c1d15b8-1745-41e2-9def-a5231ecbac21.png">
 User can input the data with the correct data type, and user can input exit to exit the insert data.<br>
 <img width="317" alt="Screen Shot 2023-05-04 at 3 52 29 PM" src="https://user-images.githubusercontent.com/102633438/236347436-942fda48-634c-4b32-96f3-f8e75b0316d2.png">
-User can input the item name in the json file. If the item not found, it will show a not with "item not found".
+User can input the item name in the json file. If the item not found, it will show a not with "item not found".<br>
 ## Search and Filter data
 User can search the information by user name, language, rating, Item name and time. <br>
 User can filter the information by user name, language, rating, Item name and time, and filter will show all the result that match with filter criteria.<br> 
