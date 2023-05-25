@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
@@ -24,6 +26,77 @@ import net.minidev.json.parser.ParseException;
 
 @Controller
 public class MainMenuController {
+
+    String username;
+    String docName = "sampleDocName";
+
+
+    @ModelAttribute("account")
+    public UserAccountImpl getUserAccount(){
+        return new UserAccountImpl();
+    }
+    
+    // Request Mapping Methods for Login and Registration:
+    //@GetMapping("/login") is a handler method that handles GET requests to "/login".
+    //It returns the view name "login_form".
+
+    @GetMapping("/login")
+    public String showLogin(){
+        return "login_form";
+    }
+
+    // @PostMapping("login") is a handler method that handles POST requests to "/login".
+    // It accepts a UserAccountImpl object annotated with @ModelAttribute and performs login validation.
+    // If the login is successful, it returns the view name "login_success"; otherwise, it returns "login_failure".
+
+    @PostMapping("login")
+    public String handle_login(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
+        Boolean exists = userAcc.login(userAcc.getUsername(), userAcc.getPassword());
+
+        if(exists){
+            this.username = userAcc.getUsername();
+            return "login_success";
+        }
+        else{
+            return "login_failure";
+        }
+    }
+
+    // @GetMapping("/register2") is a handler method that handles GET requests to "/register2".
+    // It returns the view name "register_form2".
+
+    @GetMapping("/register2")
+    public String showForm2(){
+        return "register_form2";
+    }
+
+    // @PostMapping("/register2") is a handler method that handles POST requests to "/register2".
+    // It accepts a UserAccountImpl object annotated with @ModelAttribute and performs registration validation.
+    // If the registration is successful, it returns the view name "register_success"; otherwise, it returns "dupe_username".
+
+    @PostMapping("/register2")
+    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc) throws IOException {
+        // System.out.println(userAcc);
+        
+        Boolean unique = userAcc.register(userAcc.getUsername(), userAcc.getPassword());
+
+        if(unique){
+            return "register_success";
+        }
+        else{
+            return "dupe_username";
+        }
+    }
+
+
+    
+
+    @GetMapping("testLocation")
+    @ResponseBody
+    public String getData(){
+        return ("MainMenuController.username: " + this.username + ", MainMenuController.docName: " + this.docName);
+    }
+
 
     // Request Mapping Method for Main Menu:
     // @GetMapping("/mainmenu") is a handler method that handles GET requests to "/mainmenu".
@@ -59,7 +132,7 @@ public class MainMenuController {
 
     @PostMapping("/insert")
     public String handleInsert(@ModelAttribute("review") SingleReview review) throws ParseException{
-        AddDataHelper.addItem(review);
+        AddDataHelper.addItem(review, this.username, this.docName);
         return "insert_success";
     }
 
