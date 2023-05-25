@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-// @Controller Annotation:
-// The @Controller annotation is used to mark the class as a Spring MVC controller.
+import java.io.IOException;
 
 @Controller
 public class GreetingController {
@@ -86,7 +84,7 @@ public class GreetingController {
     // If the registration is successful, it returns the view name "register_success"; otherwise, it returns "dupe_username".
 
     @PostMapping("/register2")
-    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
+    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc) throws IOException {
         // System.out.println(userAcc);
         
         Boolean unique = userAcc.register(userAcc.getUsername(), userAcc.getPassword());

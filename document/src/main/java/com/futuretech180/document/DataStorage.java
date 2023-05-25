@@ -1,12 +1,12 @@
 package com.futuretech180.document;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class DataStorage {
-    public static void main(String[] args) {
-
         // Object Initialization:
         // An instance of the UserAccountImpl class is created and assigned to the userAccount variable.
-        
+
+    public static void main(String[] args) throws IOException {
         UserAccountImpl userAccount = new UserAccountImpl();
 
         Scanner scanner = new Scanner(System.in);
