@@ -5,7 +5,6 @@ The Interface: Web UI (Spring boot)
 * Feature: The username login in system
   * The user can create a new account.
   * The user can login in with account was created.
-  * The user can login in with guest.
 
 
 To run (in VSCode for now):
@@ -22,9 +21,6 @@ You can select your option to register account, login account and visit as guest
  <img width="275" alt="Screen Shot 2023-05-04 at 3 54 58 PM" src="https://user-images.githubusercontent.com/97145998/236347610-a9bec7ae-291d-4b5f-b556-07d95e27f3ff.png"> .<br>
  If you select register account, you should enter your username and passowrd. After that you should see that you have register successfully.<br>
 <img width="396" alt="Screen Shot 2023-05-04 at 4 02 35 PM" src="https://user-images.githubusercontent.com/97145998/236348177-5c8e37fc-179a-43d7-a7bc-6c536b0a1a15.png"> .<br>
- If you select Create guest account, you can get into the FutureDB directly.<br>
- After you getinto the FutureDB, you should see a menu of the FutureDB.<br>
- <img width="381" alt="Screen Shot 2023-05-04 at 3 55 25 PM" src="https://user-images.githubusercontent.com/97145998/236347950-1ea88248-b94a-4098-bfd2-2159e615902d.png"> .<br>
  User can choose the function that wants to use from the menu.<br>
 
 ## To run the feature "Keyword searching"
