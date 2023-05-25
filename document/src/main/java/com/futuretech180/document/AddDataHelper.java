@@ -19,7 +19,7 @@ public class AddDataHelper {
     // addItem Method:
     // The addItem method takes a SingleReview object as a parameter and is declared with a throws ParseException clause, indicating that it may throw a ParseException 
 
-    static void addItem(SingleReview oneSingleReview) throws ParseException{
+    static void addItem(SingleReview oneSingleReview, String username, String docName) throws ParseException{
         
         // Read the existing JSON data from the file
         String jsonData = "";

@@ -87,6 +87,13 @@
         const eGridDiv = document.getElementById("myGrid");
         new agGrid.Grid(eGridDiv, gridOptions);
 
+        fetch("testLocation")
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(e => console.error('Error: ', e))
+
         fetch('http://localhost:8000/items_list.json', {cache: "no-store"})
             .then(response => response.json())
             .then(data => {
