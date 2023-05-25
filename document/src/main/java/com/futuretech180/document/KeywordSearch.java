@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class KeywordSearch {
     public static void main(String[] args) {
-//        KeywordSearch ks = new KeywordSearch();
+        KeywordSearch ks = new KeywordSearch();
 
     }
 //    public static void search()

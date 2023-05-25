@@ -1,8 +1,9 @@
 package com.futuretech180.document;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class DataStorage {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         UserAccountImpl userAccount = new UserAccountImpl();
 
         Scanner scanner = new Scanner(System.in);

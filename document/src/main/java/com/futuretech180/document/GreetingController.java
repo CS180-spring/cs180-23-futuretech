@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
+
 @Controller
 public class GreetingController {
     @GetMapping("/greeting")
@@ -58,7 +60,7 @@ public class GreetingController {
     }
 
     @PostMapping("/register2")
-    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc){
+    public String handle_form2(@ModelAttribute("accountDisplay") UserAccountImpl userAcc) throws IOException {
         // System.out.println(userAcc);
         
         Boolean unique = userAcc.register(userAcc.getUsername(), userAcc.getPassword());

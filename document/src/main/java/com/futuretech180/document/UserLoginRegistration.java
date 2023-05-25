@@ -14,6 +14,7 @@ import java.util.Scanner;
 // File to store usernames and passwords
 class UserAccountImpl{
     private Map<String, String> accounts;
+    PathHolder pathHolder;
     String username;
     String password;
     private static final String FILE_NAME = "user_accounts.txt"; 
@@ -21,6 +22,7 @@ class UserAccountImpl{
     // Load usernames and passwords from file
     public UserAccountImpl() {
         accounts = new HashMap<>();
+        pathHolder = new PathHolder("");
         loadUserAccounts(); 
     }
 
@@ -58,10 +60,13 @@ class UserAccountImpl{
     }
 
     // Register page with account create success or fail by existed username
-    public Boolean register(String username, String password) {
+    public Boolean register(String username, String password) throws IOException {
         if (!accounts.containsKey(username)) {
             accounts.put(username, password);
             saveUserAccounts(); // Save updated usernames and passwords to file
+            //========Create folder==========
+            pathHolder.createUserFolder(username);
+            //===============================
             System.out.println("Registration successful! Account created for " + username + ".");
             return true;
         } else {
