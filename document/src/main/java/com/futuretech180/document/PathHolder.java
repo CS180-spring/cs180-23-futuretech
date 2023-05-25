@@ -38,15 +38,18 @@ public class PathHolder {
         // Set the current username to the specified folder name
         username = folderName;
 
+        String pathToU = "Users/" + folderName;
+        new File(pathToU).mkdirs();
+
         // Check if the folder already exists
-        if (!isFolderExisted(folderName)) {
-            // Create the folder if it doesn't exist
-            Path path = Paths.get(getPath());
-            Files.createDirectories(path);
-            System.out.println("User folder '" + folderName + "' created.");
-        } else {
-            System.out.println("User folder '" + folderName + "' already exists.");
-        }
+//        if (!isFolderExisted(folderName)) {
+//            // Create the folder if it doesn't exist
+//            Path path = Paths.get(getPath());
+//            Files.createDirectories(path);
+//            System.out.println("User folder '" + folderName + "' created.");
+//        } else {
+//            System.out.println("User folder '" + folderName + "' already exists.");
+//        }
     }
 
     // Get the path of the user folder
