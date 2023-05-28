@@ -1,4 +1,8 @@
 package com.futuretech180.document;
+
+// The SingleReview class represents a review entity with properties such as first name, time, language, item, rating, and description.
+// It provides methods for retrieving and setting the property values, as well as methods for searching based on keywords and ratings.
+
 public class SingleReview {
     private String firstName;
     private String time;
@@ -6,6 +10,10 @@ public class SingleReview {
     private String item;
     private double rating;
     private String description;
+
+    // The class has two constructors: a default constructor and a parameterized constructor.
+    // The default constructor does not take any arguments.
+    // The parameterized constructor takes values for all the properties of a review and initializes the corresponding instance variables.
 
     public SingleReview(){
     }
@@ -19,13 +27,23 @@ public class SingleReview {
         this.rating = rating;
         this.description = description;
     }
+    
     //    @Override
+    // toString() Method:
+    // The toString() method is overridden to provide a string representation of the SingleReview object.
+    // It returns a formatted string containing the values of the review properties.
+
     public String toString()
     {
         return firstName + " " + time + " " + language + " "
         + item + " " + (rating) + " " + description;
     }
     
+    // keyWordSearch() Methods:
+    // The class has two keyWordSearch() methods.
+    // The first keyWordSearch(String str) method takes a search string as input and checks if the search string is present in any of the review properties.
+    // The second keyWordSearch(double expectRating) method takes an expected rating as input and checks if the rating of the review matches the expected rating.
+
     boolean keyWordSearch(String str)
     {
         return firstName.contains(str) || time.contains(str)
@@ -38,6 +56,11 @@ public class SingleReview {
         return expectRating == rating;
     }
     
+    // Getter and Setter Methods:
+    // The class provides getter and setter methods for each of the review properties.
+    // The getter methods are used to retrieve the values of the properties.
+    // The setter methods are used to set the values of the properties.
+
     public String getFirstName() {
         return firstName;
     }
