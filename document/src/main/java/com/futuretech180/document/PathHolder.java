@@ -80,3 +80,6 @@ public class PathHolder {
         return file.exists();
     }
 }
+
+// this code provides a basic framework for managing user folders and checking for folder and file existence. 
+// However, it has a hardcoded base directory path and may not work as expected in different environments or operating systems.

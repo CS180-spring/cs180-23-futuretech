@@ -110,7 +110,7 @@ public class AddData {
         // Writing Updated JSON Data to File:
         // The program uses a FileWriter to write the updated JSON data (stored in obj) back to the "output.json" file using the write() method.
         // If an exception occurs during file writing, it is caught and printed.
-        
+
         // Write the updated JSON data back to the file
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(obj.toJSONString());
@@ -122,7 +122,8 @@ public class AddData {
     }
 }
 
-//
+// This program allows users to input review data, which is then stored in a JSON file. 
+// The existing JSON data is read, new data is added to it, and the updated JSON data is written back to the file.
 
 
 

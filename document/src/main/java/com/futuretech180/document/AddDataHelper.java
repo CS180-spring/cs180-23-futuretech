@@ -86,3 +86,6 @@ public class AddDataHelper {
         }
     }
 }
+
+// By calling the addItem method with a SingleReview object, a username, and a document name.
+// You can add the review data to the JSON array in the "items_list.json" file.
