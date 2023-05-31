@@ -54,13 +54,17 @@ public class MainMenuController {
 
     @PostMapping("login")
     public String handle_login(@ModelAttribute("accountDisplay") UserAccountImpl userAcc) {
-        Boolean exists = userAcc.login(userAcc.getUsername(), userAcc.getPassword());
-
-        if (exists) {
-            this.username = userAcc.getUsername();
-            return "login_success";
+        if (userAcc.getUsername() == "" || userAcc.getPassword() == "") {
+            return "login_form";
         } else {
-            return "login_failure";
+            Boolean exists = userAcc.login(userAcc.getUsername(), userAcc.getPassword());
+
+            if (exists) {
+                this.username = userAcc.getUsername();
+                return "login_success";
+            } else {
+                return "login_failure";
+            }
         }
     }
 

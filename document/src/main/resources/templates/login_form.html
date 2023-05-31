@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
 </head>
+
 <body>
-    <form action="#" th:action="@{/login}" method="post" th:object="${account}">
-        <label>Username:</label>
-        <input type="text" th:field="*{username}" /><br />
-
-        <label>Password:</label>
-        <input type="password" th:field="*{password}" /><br />
-
-        <button type="submit">Login</button>
-    </form>
+    <div class="row justify-content-center">
+        <form name="myForm" action="#" th:action="@{/login}" method="post" th:object="${account}"
+            onsubmit="validateForm()">
+            <div class="form-group">
+                <label>Username</label><br />
+                <input id="usernameInput" type="text" th:field="*{username}" placeholder="Enter username" />
+            </div>
+            <div class="form-group">
+                <label>Password</label><br />
+                <input id="passwordInput" type="password" th:field="*{password}" placeholder="Password" />
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            console.log("at validateForm()");
+            var x = document.getElementById("usernameInput").value;
+            var y = document.getElementById("passwordInput").value;
+            if (x == "" || x == null || y == "" || y == null) {
+                alert("Please fill out all the fields");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
+
 </html>
