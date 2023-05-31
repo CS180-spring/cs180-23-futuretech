@@ -111,7 +111,7 @@ public class MainMenuController {
     // "/mainmenu".
     // It returns the view name "login_success".
     
-    @GetMapping("/mainmenu")
+    @GetMapping("/home")
     public String retMainMenu() {
         return "login_success";
     }
