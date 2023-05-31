@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <br/>
     <div class="row justify-content-center">
         <form name="myForm" action="#" th:action="@{/login}" method="post" th:object="${account}"
             onsubmit="validateForm()">
@@ -25,6 +26,7 @@
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
+
     <script>
         function validateForm() {
             console.log("at validateForm()");
