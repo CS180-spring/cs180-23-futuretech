@@ -189,10 +189,38 @@ public class MainMenuController {
     @PostMapping("/upload2")
     public String handleFileUpload2(@RequestParam("fileName") String fileName){
         this.docName = fileName;
-        System.out.println("selected file: " + this.docName);
+        // System.out.println("selected file: " + this.docName);
         return "view_data";
     }
-    
+
+
+    @GetMapping("/chooseDeleteDoc")
+    public String showFilesDelete(Model model){
+        String folderPath = "Users/" + this.username;
+        
+        File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+
+        List<String> fileNames = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    fileNames.add(file.getName());
+                }
+            }
+        }
+        
+        model.addAttribute("fileNames", fileNames);
+        
+        return "chooseDelete_Doc";
+    }
+
+    @PostMapping("/upload3")
+    public String handleFileUpload3(@RequestParam("fileName") String fileName){
+        this.docName = fileName;
+        return "delete_data";
+    }
+
 
 
     @GetMapping("testLocation")
