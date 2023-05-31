@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +30,7 @@ import net.minidev.json.parser.ParseException;
 public class MainMenuController {
 
     String username;
-    String docName = "sampleDocName";
+    String docName;
 
     @ModelAttribute("account")
     public UserAccountImpl getUserAccount() {
@@ -134,6 +136,34 @@ public class MainMenuController {
     // "/insert".
     // It returns the view name "insert_data".
 
+    @GetMapping("/chooseInsertDoc")
+    public String showFiles(Model model){
+        String folderPath = "Users/" + this.username;
+        
+        File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+
+        List<String> fileNames = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    fileNames.add(file.getName());
+                }
+            }
+        }
+
+        model.addAttribute("fileNames", fileNames);
+
+        return "chooseInsert_Doc";
+    }
+
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam("fileName") String fileName){
+        this.docName = fileName;
+        System.out.println("selected file: " + this.docName);
+        return "insert_data";
+    }
+
     @GetMapping("/insert")
     public String showInsert() {
         return "insert_data";
@@ -149,8 +179,13 @@ public class MainMenuController {
 
     @PostMapping("/insert")
     public String handleInsert(@ModelAttribute("review") SingleReview review) throws ParseException {
-        AddDataHelper.addItem(review, this.username, this.docName);
-        return "insert_success";
+        if(review.getFirstName() == "" || review.getTime() == "" || review.getLanguage() == "" || review.getItem() == "" || review.getDescription() == ""){
+            return "insert_data";
+        }
+        else{
+            AddDataHelper.addItem(review, this.username, this.docName);
+            return "insert_success";
+        }
     }
 
     // @GetMapping("/view") is a handler method that handles GET requests to
