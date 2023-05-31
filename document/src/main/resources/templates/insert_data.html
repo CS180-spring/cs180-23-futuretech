@@ -1,33 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Data</title>
 </head>
+
 <body>
-    <form action="#" th:action="@{/insert}" method="post" th:object="${singleReview}">
-        <label>Name:</label>
-        <input type="text" th:field="*{firstName}" /><br/>
+    <br/>
+    <div class="row justify-content-center">
+        <form name="myForm" action="#" th:action="@{/insert}" method="post" th:object="${singleReview}"
+            onsubmit="validateForm()">
+            <div class="form-group">
+                <label>Name</label>
+                <input id="nameInput" type="text" th:field="*{firstName}" placeholder="Name..." />
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input id="timeInput" type="text" th:field="*{time}" placeholder="YYYY-MM-DD" />
+            </div>
+            <div class="form-group">
+                <label>Language</label>
+                <input id="languageInput" type="text" th:field="*{language}" placeholder="en" />
+            </div>
+            <div class="form-group">
+                <label>Item</label>
+                <input id="itemInput" type="text" th:field="*{item}" placeholder="Enter item" />
+            </div>
+            <div class="form-group">
+                <label>Rating</label>
+                <input id="ratingInput" type="text" th:field="*{rating}" />
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input id="descriptionInput" type="text" th:field="*{description}" placeholder="Enter description..." />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 
-        <label>Time:</label>
-        <input type="text" th:field="*{time}" /><br/>
+    <script>
+        function validateForm() {
+            var name = document.getElementById("nameInput").value;
+            var time = document.getElementById("timeInput").value;
+            var language = document.getElementById("languageInput").value;
+            var item = document.getElementById("itemInput").value;
+            var rating = document.getElementById("ratingInput").value;
+            var description = document.getElementById("descriptionInput").value;
 
-        <label>Language:</label>
-        <input type="text" th:field="*{language}" /><br/>
-
-        <label>Item:</label>
-        <input type="text" th:field="*{item}" /><br/>
-
-        <label>Rating:</label>
-        <input type="text" th:field="*{rating}" /><br/>
-
-        <label>Description:</label>
-        <input type="text" th:field="*{description}"><br/>
-
-        <button type="submit">Submit</button>
-    </form>
+            if(name == "" || time == "" || language == "" || item == "" || rating == "" || description == ""){
+                alert("Please fill out all the fields");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
+
 </html>
