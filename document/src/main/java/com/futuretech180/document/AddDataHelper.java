@@ -23,7 +23,8 @@ public class AddDataHelper {
         
         // Read the existing JSON data from the file
         String jsonData = "";
-        String filePath = "items_list.json";
+        // String filePath = "items_list.json";
+        String filePath = "Users/" + username + "/" + docName;
         File file = new File(filePath);
         Path path = Paths.get(filePath);
 
