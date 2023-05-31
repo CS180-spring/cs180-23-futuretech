@@ -105,17 +105,12 @@ public class MainMenuController {
         }
     }
 
-    @GetMapping("testLocation")
-    @ResponseBody
-    public String getData() {
-        return ("MainMenuController.username: " + this.username + ", MainMenuController.docName: " + this.docName);
-    }
-
+    
     // Request Mapping Method for Main Menu:
     // @GetMapping("/mainmenu") is a handler method that handles GET requests to
     // "/mainmenu".
     // It returns the view name "login_success".
-
+    
     @GetMapping("/mainmenu")
     public String retMainMenu() {
         return "login_success";
@@ -125,19 +120,53 @@ public class MainMenuController {
     // @ModelAttribute("singleReview") is a method that provides a model attribute
     // named "singleReview".
     // The method returns a new instance of the SingleReview class.
-
+    
     @ModelAttribute("singleReview")
     public SingleReview getSingleReview() {
         return new SingleReview();
     }
-
+    
     // Request Mapping Methods for Inserting and Viewing Data:
     // @GetMapping("/insert") is a handler method that handles GET requests to
     // "/insert".
     // It returns the view name "insert_data".
-
+    
     @GetMapping("/chooseInsertDoc")
     public String showFiles(Model model){
+        String folderPath = "Users/" + this.username;
+        
+        File folder = new File(folderPath);
+        File[] files = folder.listFiles();
+        
+        List<String> fileNames = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    fileNames.add(file.getName());
+                }
+            }
+        }
+        
+        model.addAttribute("fileNames", fileNames);
+        
+        return "chooseInsert_Doc";
+    }
+    
+    @PostMapping("/upload")
+    public String handleFileUpload(@RequestParam("fileName") String fileName){
+        this.docName = fileName;
+        // System.out.println("selected file: " + this.docName);
+        return "insert_data";
+    }
+    
+    @GetMapping("/insert")
+    public String showInsert() {
+        return "insert_data";
+    }
+    
+    
+    @GetMapping("/chooseViewDoc")
+    public String showFilesView(Model model){
         String folderPath = "Users/" + this.username;
         
         File folder = new File(folderPath);
@@ -151,22 +180,27 @@ public class MainMenuController {
                 }
             }
         }
-
+        
         model.addAttribute("fileNames", fileNames);
-
-        return "chooseInsert_Doc";
+        
+        return "chooseView_Doc";
     }
-
-    @PostMapping("/upload")
-    public String handleFileUpload(@RequestParam("fileName") String fileName){
+    
+    @PostMapping("/upload2")
+    public String handleFileUpload2(@RequestParam("fileName") String fileName){
         this.docName = fileName;
         System.out.println("selected file: " + this.docName);
-        return "insert_data";
+        return "view_data";
     }
+    
 
-    @GetMapping("/insert")
-    public String showInsert() {
-        return "insert_data";
+
+    @GetMapping("testLocation")
+    @ResponseBody
+    public String[] getData() {
+        String[] ret = {this.username, this.docName};
+        return ret;
+        // return ("MainMenuController.username: " + this.username + ", MainMenuController.docName: " + this.docName);
     }
 
     // @PostMapping("/insert") is a handler method that handles POST requests to
@@ -176,7 +210,7 @@ public class MainMenuController {
     // The method calls the AddDataHelper.addItem(review) method to add the review
     // data.
     // It returns the view name "insert_success".
-
+    
     @PostMapping("/insert")
     public String handleInsert(@ModelAttribute("review") SingleReview review) throws ParseException {
         if(review.getFirstName() == "" || review.getTime() == "" || review.getLanguage() == "" || review.getItem() == "" || review.getDescription() == ""){
@@ -187,11 +221,11 @@ public class MainMenuController {
             return "insert_success";
         }
     }
-
+    
     // @GetMapping("/view") is a handler method that handles GET requests to
     // "/view".
     // It returns the view name "view_data".
-
+    
     @GetMapping("/view")
     public String showView() {
         return "view_data";
