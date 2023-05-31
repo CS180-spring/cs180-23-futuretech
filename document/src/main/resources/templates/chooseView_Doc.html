@@ -21,7 +21,7 @@
 
         <ul class="list-group">
             <li th:each="fileName : ${fileNames}">
-                <a class="btn btn-warning" role="button" href="#" th:text="${fileName}"
+                <a class="btn btn-warning mb-2" role="button" href="#" th:text="${fileName}"
                     th:onclick="selectFile(this);"></a>
             </li>
         </ul>
