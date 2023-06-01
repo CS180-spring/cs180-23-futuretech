@@ -17,10 +17,11 @@ import net.minidev.json.parser.ParseException;
 
 public class DeleteDataHelper {
 
-    private static void deleteItem(String itemName, String itemDescr, String itemDate) throws IOException, ParseException {
+    public static boolean deleteItem(String user, String docName, String firstName, String itemDate, String itemLang,
+            String itemName, String itemDescr) throws IOException, ParseException {
         // Read the existing JSON data from the file
         String jsonData = "";
-        String filePath = "items list.json";
+        String filePath = "Users/" + user + "/" + docName;
         File file = new File(filePath);
         Path path = Paths.get(filePath);
 
@@ -37,43 +38,46 @@ public class DeleteDataHelper {
             obj = (JSONObject) new JSONParser(JSONParser.MODE_PERMISSIVE).parse(jsonData);
         } else {
             obj = new JSONObject();
-            obj.put("items list", new JSONArray());
+            obj.put("items_list", new JSONArray());
         }
 
-        JSONArray existingList = (JSONArray) obj.get("items list");
+        JSONArray existingList = (JSONArray) obj.get("items_list");
 
         // Check if the existing list is null or empty
         if (existingList == null || existingList.isEmpty()) {
             System.out.println("No items found.");
-            return;
+            return false;
         }
 
-        // Search for the item with the matching name and remove it from the existing JSON array
+        // Search for the item with the matching name and remove it from the existing
+        // JSON array
         boolean itemFound = false;
-        for(Object r: existingList){
-            JSONObject item = (JSONObject)r;
+        for (Object r : existingList) {
+            JSONObject item = (JSONObject) r;
 
-            if(item.get("item name").equals(itemName))
-                if(item.get("description").equals(itemDescr))
-                    if(item.get("time").equals(itemDate))
-                        {
-                            existingList.remove(r);
-                            itemFound =true;
-                            break;
-                        }
+            if (item.get("item name").equals(itemName))
+                if (item.get("description").equals(itemDescr))
+                    if (item.get("time").equals(itemDate))
+                        if (item.get("name").equals(firstName))
+                            if (item.get("languages").equals(itemLang)) {
+                                existingList.remove(r);
+                                itemFound = true;
+                                break;
+                            }
         }
 
         // Output a message to terminal if the item was not found
         if (!itemFound) {
             System.out.println("Item not found.");
+            return false;
         }
 
         // Write the updated JSON data back to the file
-        updateFile(filePath,obj,existingList);
+        updateFile(filePath, obj, existingList);
+        return true;
     }
 
-    private static void updateFile(String filePath,JSONObject obj,JSONArray existingList)
-    {
+    private static void updateFile(String filePath, JSONObject obj, JSONArray existingList) {
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             JSONArray updatedList = new JSONArray();
             for (int i = 0; i < existingList.size(); i++) {
@@ -95,21 +99,21 @@ public class DeleteDataHelper {
 
     }
 
-    public static void deleteItem() throws IOException, ParseException {
-        String name,descr,date;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the item name of the item to delete:");
-        name = scanner.nextLine();
-        System.out.println("Enter the description of the item to delete:");
-        descr = scanner.nextLine();
-        System.out.println("Enter the date(MM-DD-YYYY) of the item to delete:");
-        date = scanner.nextLine();
-        scanner.close();
-        deleteItem(name,descr,date);
-    }
+    // public static void deleteItem() throws IOException, ParseException {
+    // String name,descr,date;
+    // Scanner scanner = new Scanner(System.in);
+    // System.out.println("Enter the item name of the item to delete:");
+    // name = scanner.nextLine();
+    // System.out.println("Enter the description of the item to delete:");
+    // descr = scanner.nextLine();
+    // System.out.println("Enter the date(MM-DD-YYYY) of the item to delete:");
+    // date = scanner.nextLine();
+    // scanner.close();
+    // deleteItem(name,descr,date);
+    // }
 
-    public static void main(String[] args) throws IOException, ParseException {
-        DeleteDataHelper deleteDataHelper = new DeleteDataHelper();
-        DeleteDataHelper.deleteItem();
-    }
+    // public static void main(String[] args) throws IOException, ParseException {
+    // DeleteDataHelper deleteDataHelper = new DeleteDataHelper();
+    // DeleteDataHelper.deleteItem();
+    // }
 }
