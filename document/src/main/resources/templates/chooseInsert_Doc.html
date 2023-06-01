@@ -41,7 +41,36 @@
         }
 
         function uploadFile() {
-            
+            let data = document.getElementById('formFile').files[0];
+            let entry = document.getElementById('formFile').files[0];
+            console.log('uploadFile', entry, data);
+            fetch("testLocation")
+                .then(response => response.text())
+                .then(data => {
+                    var arr = data.replace(/\[|\]/g, '').split(',');
+                    var finArr = arr.map(function (item) {
+                        return item.trim().replace(/"/g, '');
+                    });
+                    fetch('http://localhost:8000/Users/' + finArr[0] + '/' + encodeURIComponent(entry.name), {method: 'put', body: data});
+                    console.log('fetch upload done');
+                    // location.reload();
+                    var fName = entry.name;
+                    fetch("/upload-file", {
+                        method: "post",
+                        headers: {
+                            "Content-Type": "text/plain"
+                        },
+                        body: fName
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log('over here');
+                    })
+                    .catch(e => {
+                        console.error("Error: ",e);
+                    })
+                })
+                .catch(e => console.error('Error: ', e))
         }
     </script>
 
