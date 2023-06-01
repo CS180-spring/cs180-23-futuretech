@@ -17,6 +17,7 @@ import net.minidev.json.parser.ParseException;
 
 public class DeleteDataHelper {
 
+// <<<<<<< alex
     public static boolean deleteItem(String user, String docName, String firstName, String itemDate, String itemLang,
             String itemName, String itemDescr) throws IOException, ParseException {
         // Read the existing JSON data from the file
