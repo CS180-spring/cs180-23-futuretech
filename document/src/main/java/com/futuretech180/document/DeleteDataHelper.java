@@ -17,7 +17,7 @@ import net.minidev.json.parser.ParseException;
 
 public class DeleteDataHelper {
 
-    public static<T> void deleteItem(T itemToDelete,String itemType) throws IOException, ParseException {
+    private static void deleteItem(String itemName, String itemDescr, String itemDate) throws IOException, ParseException {
         // Read the existing JSON data from the file
         String jsonData = "";
         String filePath = "items list.json";
@@ -52,12 +52,15 @@ public class DeleteDataHelper {
         boolean itemFound = false;
         for(Object r: existingList){
             JSONObject item = (JSONObject)r;
-            if(item.get(itemType).equals(itemToDelete))
-            {
-                existingList.remove(r);
-                itemFound =true;
-                break;
-            }
+
+            if(item.get("item name").equals(itemName))
+                if(item.get("description").equals(itemDescr))
+                    if(item.get("time").equals(itemDate))
+                        {
+                            existingList.remove(r);
+                            itemFound =true;
+                            break;
+                        }
         }
 
         // Output a message to terminal if the item was not found
@@ -92,20 +95,21 @@ public class DeleteDataHelper {
 
     }
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void deleteItem() throws IOException, ParseException {
+        String name,descr,date;
         Scanner scanner = new Scanner(System.in);
-
-        // Ask the user for the item name to delete
-        System.out.println("Enter the name of the item to delete:");
-        String itemToDelete = scanner.nextLine();
-
-
-        deleteItem(itemToDelete,"name");
-
-        System.out.println("Enter the rating of the item to delete:");
-        double getRating = scanner.nextDouble();
-        deleteItem(getRating,"Rating");
-
+        System.out.println("Enter the item name of the item to delete:");
+        name = scanner.nextLine();
+        System.out.println("Enter the description of the item to delete:");
+        descr = scanner.nextLine();
+        System.out.println("Enter the date(MM-DD-YYYY) of the item to delete:");
+        date = scanner.nextLine();
         scanner.close();
+        deleteItem(name,descr,date);
+    }
+
+    public static void main(String[] args) throws IOException, ParseException {
+        DeleteDataHelper deleteDataHelper = new DeleteDataHelper();
+        DeleteDataHelper.deleteItem();
     }
 }
