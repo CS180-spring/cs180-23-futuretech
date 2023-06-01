@@ -55,11 +55,29 @@ The main menu will look like this:
 
 
 ## Insert data
+Select a document to insert reviews into and then fill out the form with the review information, or upload an existing JSON file. **Note: this will only create an empty .json document. The data will have to be manually changed.**
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/08256063-74f3-4fe6-8092-facfe56bf2e9)
+
+
+## Delete data
+Select a document to remove reviews from. Then, fill out the form with details of the review you want to remove. **Note: all of the fields must be filled out.**
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/df951364-cfbb-4d29-abc9-127c8121cc2d)
+
+
+## View data
+Select a document to view the contents of.
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/be96694e-f9a7-414d-8ae2-5e4d829f0633)
+
+It will then look something like this:
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/343db485-0687-4ab3-b8ca-1bae22eedbe1)
+
+Use the "Quick filter" to quickly filter out reviews. Drag unwanted columns out. Click on columns you want to see using the toolbar on the right. Move columns to the top to group wanted columns together.
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/47775cca-1e4f-4c23-908e-361c9e336ba7)
 
 
 
 
-
+<!-- 
 ## To run the file "UserLoginRegistration.java"
   User need to download the "src", ".idea", ".gitignore", "Login.iml" files, then you should be able to launch the file. <br>
   When you launch the file, you should see the welcome page of the FutureDB.<br>
@@ -83,4 +101,4 @@ User can input the item name in the json file. If the item not found, it will sh
 
 ## Search and Filter data
 User can search the information by user name, language, rating, Item name and time. <br>
-User can filter the information by user name, language, rating, Item name and time, and filter will show all the result that match with filter criteria.<br> 
+User can filter the information by user name, language, rating, Item name and time, and filter will show all the result that match with filter criteria.<br>  -->
