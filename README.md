@@ -13,13 +13,18 @@ Then open localhost:8080 in a browser. Register by clicking on "Click here to re
 In a new terminal, navigate to the directory in which **items_list.json** is located (document/ which is the same location as where you ran ./mvnw spring-boot:run). With this new terminal open, run the python file **httpserver.py**.
 
 ## To start the program
-Change directory to document/ and then run **./mvnw spring-boot:run** ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d84bf8f9-c29b-4cd8-bb69-432e557e45b2)
-If everything works correctly, you will see something like this: ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/6c424d17-8956-4d5e-bb8a-0d6985e805b9)
+Change directory to document/ and then run **./mvnw spring-boot:run**
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d84bf8f9-c29b-4cd8-bb69-432e557e45b2)
+If everything works correctly, you will see something like this:
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/6c424d17-8956-4d5e-bb8a-0d6985e805b9)
+
 The application is now running on localhost:8080/
 
 ## To start the server
 Navigate to document/ and open the **httpserver.py** file and click on "Run Python File" (it will be near the top-right corner by default): ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d6fa8fa7-0342-400a-b1e0-07934d7b1de5)
+
 This will run in a new terminal. Press **Ctrl + c** to end the python script and then change directory to document/
+
 **Run Python File** again. Now the server is running (without opening a new terminal). ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/5d5bfc36-4184-40f4-9407-2bc31bb421f7)
 
 
