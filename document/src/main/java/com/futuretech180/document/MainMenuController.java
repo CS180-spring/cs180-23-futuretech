@@ -165,10 +165,10 @@ public class MainMenuController {
         return "chooseInsert_Doc";
     }
     
-    @GetMapping("/insert")
-    public String showInsert() {
-        return "insert_data";
-    }
+    // @GetMapping("/insert")
+    // public String showInsert() {
+    //     return "insert_data";
+    // }
     
     
     @GetMapping("/chooseViewDoc")
@@ -225,6 +225,23 @@ public class MainMenuController {
     public String handleFileUpload3(@RequestParam("fileName") String fileName){
         this.docName = fileName;
         return "delete_data";
+    }
+
+    @PostMapping("/delete")
+    public String handleDelete(@ModelAttribute("review") SingleReview review) throws ParseException, IOException {
+        // might need to change parameter
+        if(review.getFirstName() == "" || review.getTime() == "" || review.getLanguage() == "" || review.getItem() == "" || review.getDescription() == ""){
+            return "delete_data";
+        }
+        else{
+            boolean delete = DeleteDataHelper.deleteItem(this.username, this.docName, review.getFirstName(), review.getTime(), review.getLanguage(), review.getItem(), review.getDescription());
+            if(delete){
+                return "delete_success";
+            }
+            else{
+                return "delete_failure";
+            }
+        }
     }
 
 
