@@ -12,20 +12,51 @@ While in the document/ folder, run ./mvnw spring-boot:run
 Then open localhost:8080 in a browser. Register by clicking on "Click here to register" and submit your Username and Password.
 In a new terminal, navigate to the directory in which **items_list.json** is located (document/ which is the same location as where you ran ./mvnw spring-boot:run). With this new terminal open, run the python file **httpserver.py**.
 
+
 ## To start the program
 Change directory to document/ and then run **./mvnw spring-boot:run**
+
 ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d84bf8f9-c29b-4cd8-bb69-432e557e45b2)
 If everything works correctly, you will see something like this:
+
 ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/6c424d17-8956-4d5e-bb8a-0d6985e805b9)
 
-The application is now running on localhost:8080/
+The application is now running on **localhost:8080/**
+
 
 ## To start the server
-Navigate to document/ and open the **httpserver.py** file and click on "Run Python File" (it will be near the top-right corner by default): ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d6fa8fa7-0342-400a-b1e0-07934d7b1de5)
+Navigate to document/ and open the **httpserver.py** file and click on "Run Python File" (it will be near the top-right corner by default):
+
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/d6fa8fa7-0342-400a-b1e0-07934d7b1de5)
 
 This will run in a new terminal. Press **Ctrl + c** to end the python script and then change directory to document/
 
-**Run Python File** again. Now the server is running (without opening a new terminal). ![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/5d5bfc36-4184-40f4-9407-2bc31bb421f7)
+**Run Python File** again. Now the server is running (in the same terminal).
+
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/5d5bfc36-4184-40f4-9407-2bc31bb421f7)
+
+
+## Using the program
+Now everything should be set up correctly. Open a browser and go to **localhost:8080/**
+It should look like this:
+
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/496c2649-a9b9-412f-87d0-b795cab46e9c)
+
+If you are a returning user, click on **Login** and login with your credentials.
+If you are a new user, click **Register** and register with a unique username and password. Afterwards, login with your credentials.
+
+
+## Main Menu
+The main menu will look like this:
+
+![image](https://github.com/CS180-spring/cs180-23-futuretech/assets/56359948/f5916de8-0f01-40bc-9ad3-f858981f48f6)
+
+**Insert data** to manually insert reviews into one of your documents, **Delete data** to delete an existing review in one of your documents, **View data** to view one of your documents, or **Log out** if you are done.
+
+
+## Insert data
+
+
 
 
 
