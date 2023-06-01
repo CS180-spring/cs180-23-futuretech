@@ -165,15 +165,15 @@ public class MainMenuController {
 
     @PostMapping("/upload-file")
     @ResponseBody
-    public String handleActualFileUpload(@RequestBody String inputStr){
+    public String handleActualFileUpload(@RequestBody String inputStr) {
         System.out.println(inputStr);
         Path source = Path.of(inputStr);
         Path target = Path.of("Users/" + this.username + "/" + inputStr);
         try {
-            Files.move(source, target, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("File moved successfully!");
+            Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File copied successfully!");
         } catch (IOException e) {
-            System.out.println("Error moving file: " + e.getMessage());
+            System.out.println("Error copying file: " + e.getMessage());
         }
         return "chooseInsert_Doc";
     }
