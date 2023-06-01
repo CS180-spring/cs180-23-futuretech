@@ -158,6 +158,12 @@ public class MainMenuController {
         // System.out.println("selected file: " + this.docName);
         return "insert_data";
     }
+
+    @PostMapping("/upload-file")
+    public String handleActualFileUpload(@RequestParam("fileName") String fileName){
+        
+        return "chooseInsert_Doc";
+    }
     
     @GetMapping("/insert")
     public String showInsert() {
