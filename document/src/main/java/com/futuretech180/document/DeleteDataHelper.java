@@ -17,7 +17,7 @@ import net.minidev.json.parser.ParseException;
 
 public class DeleteDataHelper {
 
-    static void deleteItem(String itemToDelete) throws IOException, ParseException {
+    public static<T> void deleteItem(T itemToDelete,String itemType) throws IOException, ParseException {
         // Read the existing JSON data from the file
         String jsonData = "";
         String filePath = "items list.json";
@@ -50,21 +50,27 @@ public class DeleteDataHelper {
 
         // Search for the item with the matching name and remove it from the existing JSON array
         boolean itemFound = false;
-        for (int i = 0; i < existingList.size(); i++) {
-            JSONObject item = (JSONObject) existingList.get(i);
-            if (item.get("item name").equals(itemToDelete)) {
-                existingList.remove(i);
-                itemFound = true;
+        for(Object r: existingList){
+            JSONObject item = (JSONObject)r;
+            if(item.get(itemType).equals(itemToDelete))
+            {
+                existingList.remove(r);
+                itemFound =true;
                 break;
             }
         }
 
-        // Output a message if the item was not found
+        // Output a message to terminal if the item was not found
         if (!itemFound) {
             System.out.println("Item not found.");
         }
 
         // Write the updated JSON data back to the file
+        updateFile(filePath,obj,existingList);
+    }
+
+    private static void updateFile(String filePath,JSONObject obj,JSONArray existingList)
+    {
         try (FileWriter fileWriter = new FileWriter(filePath)) {
             JSONArray updatedList = new JSONArray();
             for (int i = 0; i < existingList.size(); i++) {
@@ -83,6 +89,7 @@ public class DeleteDataHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void main(String[] args) throws IOException, ParseException {
@@ -92,7 +99,12 @@ public class DeleteDataHelper {
         System.out.println("Enter the name of the item to delete:");
         String itemToDelete = scanner.nextLine();
 
-        deleteItem(itemToDelete);
+
+        deleteItem(itemToDelete,"name");
+
+        System.out.println("Enter the rating of the item to delete:");
+        double getRating = scanner.nextDouble();
+        deleteItem(getRating,"Rating");
 
         scanner.close();
     }
