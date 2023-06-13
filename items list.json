@@ -1,0 +1,54 @@
+{
+    "item list": [
+        {
+            "name": "John Wick",
+            "time": "11-01-2016",
+            "languages": "English",
+            "item name": "pencil",
+            "rating": 3.5,
+            "description": "This is a great pencil that writes smoothly and is easy to sharpen. I love using it for all my writing needs."
+        },
+        {
+            "name": "Leo Huntman",
+            "time": "05-03-2021",
+            "languages": "Spanish",
+            "item name": "book",
+            "rating": 4.5,
+            "description": "This is an interesting read that kept me engaged from beginning to end. The characters were well-developed and the plot was unpredictable."
+        },
+        {
+            "name": "Sarah Johnson",
+            "time": "09-23-2022",
+            "languages": "French",
+            "item name": "notebook",
+            "rating": 4.0,
+            "description": "I love this notebook because it has a beautiful cover design and high-quality paper. It's perfect for jotting down notes or sketching."
+        },
+        {
+            "name": "Robert Lee",
+            "time": "06-11-2021",
+            "languages": "Chinese",
+            "item name": "marker",
+            "rating": 3.0,
+            "description": "This marker is of average quality. It's not the best I've used, but it gets the job done."
+        },
+        {
+            "name": "Maggie Chen",
+            "time": "03-01-2022",
+            "languages": "Chinese",
+            "item name": "eraser",
+            "rating": 4.2,
+            "description": "This eraser works well and doesn't leave any marks on the paper. It's also long-lasting, so I don't have to replace it often."
+        },
+        {
+            "name": "David Kim",
+            "time": "12-07-2022",
+            "languages": "Korean",
+            "item name": "watercolor set",
+            "rating": 5.0,
+            "description": "This watercolor set is amazing! The colors are vibrant and the paint is easy to work with. I highly recommend it to anyone looking for a high-quality set."
+        }
+
+    ]
+
+}

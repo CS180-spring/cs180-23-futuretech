@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div align="center">
+        <br />
+        <h3>Select which document to insert data into:</h3>
+
+        <form id="fileForm" action="/upload" method="post">
+            <input id="fileNameInput" type="hidden" name="fileName" value="" />
+        </form>
+
+        <ul class="list-group">
+            <li th:each="fileName : ${fileNames}">
+                <a class="btn btn-warning mb-2" role="button" href="#" th:text="${fileName}"
+                    th:onclick="selectFile(this);"></a>
+            </li>
+        </ul>
+
+        <br /><br />
+        <div class="mb-3 w-50">
+            <label for="formFile" class="form-label">Or, upload existing JSON file</label>
+            <input class="form-control" type="file" id="formFile" onchange="uploadFile()" accept=".json">
+        </div>
+    </div>
+    <!-- help from chatgpt -->
+    <script>
+        function selectFile(button) {
+            var fileName = button.innerText;
+            document.getElementById('fileNameInput').value = fileName;
+            document.getElementById('fileForm').submit();
+        }
+
+        function uploadFile() {
+            let data = document.getElementById('formFile').files[0];
+            let entry = document.getElementById('formFile').files[0];
+            console.log('uploadFile', entry, data);
+            fetch("testLocation")
+                .then(response => response.text())
+                .then(data => {
+                    var arr = data.replace(/\[|\]/g, '').split(',');
+                    var finArr = arr.map(function (item) {
+                        return item.trim().replace(/"/g, '');
+                    });
+                    fetch('http://localhost:8000/Users/' + finArr[0] + '/' + encodeURIComponent(entry.name), {method: 'put', body: data});
+                    console.log('fetch upload done');
+                    // location.reload();
+                    var fName = entry.name;
+                    fetch("/upload-file", {
+                        method: "post",
+                        headers: {
+                            "Content-Type": "text/plain"
+                        },
+                        body: fName
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log('over here');
+                    })
+                    .catch(e => {
+                        console.error("Error: ",e);
+                    })
+                })
+                .catch(e => console.error('Error: ', e))
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
